@@ -12,9 +12,9 @@
             android:name=".LoginScreen"
             android:label="@string/title_activity_login_screen"
             android:launchMode="singleInstance"
+            android:noHistory="true"
             android:theme="@style/AppTheme.NoActionBar"
-            android:windowSoftInputMode="stateHidden"
-            android:noHistory="true">
+            android:windowSoftInputMode="stateHidden">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -28,8 +28,13 @@
         <activity
             android:name=".ProfilePage"
             android:label="@string/Profile"
-            android:launchMode="singleInstance"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:parentActivityName=".HomeScreen"
+            android:theme="@style/AppTheme.NoActionBar">
+            <!-- Parent activity meta-data to support 4.0 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".HomeScreen" />
+        </activity>
     </application>
 
 </manifest>
