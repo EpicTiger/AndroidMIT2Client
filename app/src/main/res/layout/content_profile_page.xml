@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.example.rainer.mit2client.ProfilePage"
     tools:showIn="@layout/nav_app_bar_profile_screen">
@@ -16,93 +15,107 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:padding="@dimen/activity_vertical_margin">
 
             <ImageView
                 android:layout_width="match_parent"
-                android:layout_height="150dp"
+                android:layout_height="200dp"
                 android:scaleType="centerInside"
                 android:src="@drawable/user" />
 
             <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/Name" />
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/Name"
+                android:textColor="@color/black" />
 
             <TextView
-                android:id="@+id/fullname"
+                android:id="@+id/profilescreen_textview_fullname"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="5dp"
-                android:text="Rainer Schmitt" />
+                android:text="Rainer Schmitt"
+                android:textColor="@color/black" />
 
             <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/Gender" />
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/Gender"
+                android:textColor="@color/black" />
 
             <TextView
-                android:id="@+id/gender"
+                android:id="@+id/profilescreen_textview_gender"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="5dp"
-                android:text="Male" />
+                android:text="Male"
+                android:textColor="@color/black" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/Nationality" />
+                android:text="@string/Nationality"
+                android:textColor="@color/black" />
 
             <TextView
-                android:id="@+id/nationality"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="5dp"
-                android:text="German" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/DateOfBirth" />
-
-            <TextView
-                android:id="@+id/dateofbirth"
+                android:id="@+id/profilescreen_textview_nationality"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="5dp"
-                android:text="29 - 09 - 1991" />
+                android:text="German"
+                android:textColor="@color/black" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/politicalpreference" />
+                android:text="@string/DateOfBirth"
+                android:textColor="@color/black" />
 
             <TextView
-                android:id="@+id/politicalpreference"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="5dp"
-                android:text="N/A" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/Town" />
-
-            <TextView
-                android:id="@+id/town"
+                android:id="@+id/profilescreen_textview_dateofbirth"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="5dp"
-                android:text="Kerkrade" />
+                android:text="29 - 09 - 1991"
+                android:textColor="@color/black" />
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/politicalpreference"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:id="@+id/profilescreen_textview_politicalpreference"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="5dp"
+                android:text="N/A"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/Town"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:id="@+id/profilescreen_textview_town"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="5dp"
+                android:text="Kerkrade"
+                android:textColor="@color/black" />
 
         </LinearLayout>
+
     </android.support.v4.widget.NestedScrollView>
+
 </RelativeLayout>
