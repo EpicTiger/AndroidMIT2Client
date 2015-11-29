@@ -36,7 +36,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="5dp"
-                android:text="Rainer Schmitt"
                 android:textColor="@color/black" />
 
             <TextView
@@ -51,7 +50,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="5dp"
-                android:text="Male"
                 android:textColor="@color/black" />
 
             <TextView
@@ -66,7 +64,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="5dp"
-                android:text="German"
                 android:textColor="@color/black" />
 
             <TextView
@@ -81,7 +78,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="5dp"
-                android:text="29 - 09 - 1991"
                 android:textColor="@color/black" />
 
             <TextView
@@ -96,7 +92,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="5dp"
-                android:text="N/A"
                 android:textColor="@color/black" />
 
             <TextView
@@ -111,7 +106,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="5dp"
-                android:text="Kerkrade"
                 android:textColor="@color/black" />
 
         </LinearLayout>
