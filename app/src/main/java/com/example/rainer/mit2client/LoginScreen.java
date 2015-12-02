@@ -21,7 +21,7 @@ public class LoginScreen extends AppCompatActivity {
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                gotoHomeScreen();
+                gotoHomeSreen();
             }
         });
 
@@ -34,8 +34,8 @@ public class LoginScreen extends AppCompatActivity {
         });
     }
 
-    private void gotoHomeScreen(){
-        Intent intent = new Intent(this, HomeScreen.class);
+    private void gotoHomeSreen(){
+        Intent intent = new Intent(this, NavigationDrawer.class);
         startActivity(intent);
     }
 
