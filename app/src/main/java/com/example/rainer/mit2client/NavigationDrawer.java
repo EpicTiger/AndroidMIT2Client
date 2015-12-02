@@ -9,7 +9,6 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
-import android.widget.TextView;
 
 import Entities.User;
 
@@ -39,23 +38,6 @@ public class NavigationDrawer extends AppCompatActivity implements NavigationVie
     private void initializeToolbar() {
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-    }
-
-    private void initializeData() {
-
-        TextView fullname = (TextView) findViewById(R.id.profilescreen_textview_fullname);
-        TextView gender = (TextView) findViewById(R.id.profilescreen_textview_gender);
-        TextView nationality = (TextView) findViewById(R.id.profilescreen_textview_nationality);
-        TextView dateofbirth = (TextView) findViewById(R.id.profilescreen_textview_dateofbirth);
-        TextView politicalpreference = (TextView) findViewById(R.id.profilescreen_textview_politicalpreference);
-        TextView town = (TextView) findViewById(R.id.profilescreen_textview_town);
-
-        fullname.setText(User.Fullname);
-        gender.setText(User.Gender);
-        nationality.setText(User.Nationality);
-        dateofbirth.setText(User.DateOfBirth);
-        politicalpreference.setText(User.PoliticalPreference);
-        town.setText(User.Town);
     }
 
     private void setupDebugUser() {
