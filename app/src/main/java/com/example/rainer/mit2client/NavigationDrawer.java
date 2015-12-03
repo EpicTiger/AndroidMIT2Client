@@ -73,6 +73,10 @@ public class NavigationDrawer extends AppCompatActivity implements NavigationVie
             getFragmentManager().beginTransaction()
                     .replace(R.id.fragmentParentViewGroup, new ProfileFragment())
                     .commit();
+        } else if (id == R.id.nav_create_new_post) {
+            getFragmentManager().beginTransaction()
+                    .replace(R.id.fragmentParentViewGroup, new CreateNewPostFragment())
+                    .commit();
         } else if (id == R.id.nav_settings) {
 
         } else if (id == R.id.nav_logout) {
