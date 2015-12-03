@@ -17,7 +17,7 @@ public class LoginScreen extends AppCompatActivity {
     }
 
     private void initializeButtons() {
-        Button loginButton = (Button) findViewById(R.id.Login_Button);
+        Button loginButton = (Button) findViewById(R.id.loginscreen_login_button);
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -25,7 +25,7 @@ public class LoginScreen extends AppCompatActivity {
             }
         });
 
-        Button registerButton = (Button) findViewById(R.id.Register_Button);
+        Button registerButton = (Button) findViewById(R.id.loginscreen_register_button);
         registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -40,7 +40,7 @@ public class LoginScreen extends AppCompatActivity {
     }
 
     private void gotoRegisterScreen(){
-//        Intent intent = new Intent(this, RegisterScreen.class);
-//        startActivity(intent);
+        Intent intent = new Intent(this, RegisterScreen.class);
+        startActivity(intent);
     }
 }

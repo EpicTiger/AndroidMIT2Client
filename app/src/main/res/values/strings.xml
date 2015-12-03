@@ -23,4 +23,14 @@
     <string name="DateOfBirth">Date of birth</string>
     <string name="politicalpreference">Political preference</string>
     <string name="Town">Town</string>
+    <string name="title_activity_register_screen">RegisterScreen</string>
+    <string name="ConfirmPassword">Confirm Password</string>
+    <string name="email_address">E-mail address</string>
+
+    <string-array name="user_type_array">
+        <item>Normal user</item>
+        <item>Media user</item>
+        <item>Political user</item>
+    </string-array>
+
 </resources>
