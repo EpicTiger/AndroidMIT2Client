@@ -31,6 +31,8 @@
     <string name="Text">Text</string>
     <string name="CreatePost">Create Post</string>
     <string name="ContentCreated">Content Created</string>
+    <string name="Dislike">dislike</string>
+    <string name="Like">Like</string>
 
     <string-array name="user_type_array">
         <item>Normal user</item>
