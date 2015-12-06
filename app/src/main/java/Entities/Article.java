@@ -1,5 +1,7 @@
 package Entities;
 
+import android.graphics.drawable.Drawable;
+
 /**
  * Created by Rainer on 5-12-2015.
  */
@@ -23,5 +25,15 @@ public class Article {
 
     private String Title;
     private String Text;
+
+    public Drawable getImage() {
+        return Image;
+    }
+
+    public void setImage(Drawable image) {
+        Image = image;
+    }
+
+    private Drawable Image;
 
 }

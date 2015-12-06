@@ -1,6 +1,7 @@
 package com.example.rainer.mit2client;
 
 import android.app.Fragment;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -43,6 +44,7 @@ public class HomeFragment extends Fragment {
                 "Zo zou een van de daders \"enige vorm van contact'' hebben gehad met zeker twee terreurgroepen. Het gaat om al-Shabaab en het al-Nusra Front, zei een veiligheidsfunctionaris vrijdag (lokale tijd) tegen de Los Angeles Times.\n" +
                 "\n" +
                 "Het is nog onduidelijk hoe schutter Syed Rizwan Farook contact zou hebben gehad met de extremistische organisaties. De andere dader, Tashfeen Malik, zou op Facebook trouw hebben gezworen aan IS.");
+
 
         Article article1 = new Article();
         article1.setTitle("Harde zuidwestenwind op pakjesavond ");

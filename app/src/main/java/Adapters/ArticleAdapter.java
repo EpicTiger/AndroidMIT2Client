@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.rainer.mit2client.R;
@@ -38,6 +39,11 @@ public class ArticleAdapter extends ArrayAdapter<Article> {
         Article article = getItem(position);
 
         if (article != null) {
+
+            ImageView image = (ImageView) v.findViewById(R.id.homescreen_listview_artical_item_imageview);
+            if (image != null) {
+                image.setImageDrawable(article.getImage());
+            }
 
             TextView title = (TextView) v.findViewById(R.id.homescreen_listview_artical_item_title);
 
