@@ -1,7 +1,6 @@
 package com.example.rainer.mit2client;
 
 import android.app.Fragment;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -44,7 +43,8 @@ public class HomeFragment extends Fragment {
                 "Zo zou een van de daders \"enige vorm van contact'' hebben gehad met zeker twee terreurgroepen. Het gaat om al-Shabaab en het al-Nusra Front, zei een veiligheidsfunctionaris vrijdag (lokale tijd) tegen de Los Angeles Times.\n" +
                 "\n" +
                 "Het is nog onduidelijk hoe schutter Syed Rizwan Farook contact zou hebben gehad met de extremistische organisaties. De andere dader, Tashfeen Malik, zou op Facebook trouw hebben gezworen aan IS.");
-
+        article.setImage(getResources().getDrawable(R.drawable.claimt_betrokkenheid_bij_schietpartij_californie));
+        article.setViews(25698);
 
         Article article1 = new Article();
         article1.setTitle("Harde zuidwestenwind op pakjesavond ");
@@ -54,6 +54,8 @@ public class HomeFragment extends Fragment {
                 "De zuidwestenwind voert zeer zachte lucht aan waardoor het tussen de 9 en 11 graden wordt. Zondag, maandag en dinsdag wordt het met temperaturen tussen de 11 en 13 graden iets warmer. Ook de nachten verlopen bijzonder zacht met minima rond 8 graden.\n" +
                 "\n" +
                 "Na het weekend blijft volgens weeronline.nl het winterweer voorlopig ver weg. Het is wisselvallig met af en toe regen en tussendoor een droge dag. Soms waait het opnieuw stevig. Maandag en dinsdag blijft het zeer zacht met maxima rond 12 graden. Daarna daalt de middagtemperatuur beneden 10 graden.");
+        article1.setImage(getResources().getDrawable(R.drawable.harde_zuidwestenwind_pakjesavond));
+        article1.setViews(3314);
 
         Article article2 = new Article();
         article2.setTitle("Twee daders aanslag Caïro opgepakt door Egyptische politie ");
@@ -63,6 +65,8 @@ public class HomeFragment extends Fragment {
                 "De mannen, van 18 en 19 jaar oud, hebben bekend dat ze vrijdag molotovcocktails naar het restaurant hebben gegooid, omdat ze daar eerder als klant waren geweigerd.\n" +
                 "\n" +
                 "Na de aanslag vluchtte het duo naar Suez aan de Rode Zee. Daar werden ze opgepakt. Het restaurant brandde helemaal uit. Zestien mensen kwamen om het leven.");
+        article2.setImage(getResources().getDrawable(R.drawable.twee_daders_aanslag_cairo_opgepakt_egyptische_politie));
+        article2.setViews(10354);
 
         Article article3 = new Article();
         article3.setTitle("'Ook Nederlandse sportmarketeer schuldig aan corruptie binnen FIFA' ");
@@ -74,6 +78,8 @@ public class HomeFragment extends Fragment {
                 "De beschuldigingen richting Taylor komen van Benny Alon, een Israëlische oud-profvoetballer en eigenaar van marketingbureau JB Sports Marketing. Hij heeft onderzoek gedaan naar de illegale kaartverkoop voor het WK.\n" +
                 "\n" +
                 "Taylor heeft per mail laten weten ''geen concrete wetenschap te hebben van de feiten die aan de beschuldigingen ten grondslag liggen\".");
+        article3.setImage(getResources().getDrawable(R.drawable.ook_nederlandse_sportmarketeer_schuldig_corruptie_binnen_fifa));
+        article3.setViews(5156);
 
         articles.add(article);
         articles.add(article1);

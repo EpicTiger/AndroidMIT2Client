@@ -7,6 +7,19 @@ import android.graphics.drawable.Drawable;
  */
 public class Article {
 
+    private String Title;
+    private String Text;
+    private Drawable Image;
+    private int Views;
+
+    public int getViews() {
+        return Views;
+    }
+
+    public void setViews(int views) {
+        Views = views;
+    }
+
     public String getTitle() {
         return Title;
     }
@@ -23,9 +36,6 @@ public class Article {
         Text = text;
     }
 
-    private String Title;
-    private String Text;
-
     public Drawable getImage() {
         return Image;
     }
@@ -34,6 +44,5 @@ public class Article {
         Image = image;
     }
 
-    private Drawable Image;
 
 }

@@ -56,6 +56,12 @@ public class ArticleAdapter extends ArrayAdapter<Article> {
             if (text != null) {
                 text.setText(article.getText());
             }
+
+            TextView views = (TextView) v.findViewById(R.id.homescreen_listview_artical_item_views);
+
+            if (views != null) {
+                views.setText(article.getViews() + " views");
+            }
         }
 
         return v;
