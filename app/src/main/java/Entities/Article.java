@@ -7,6 +7,7 @@ import android.graphics.drawable.Drawable;
  */
 public class Article {
 
+    private long Id;
     private String Title;
     private String Text;
     private Drawable Image;
@@ -44,5 +45,11 @@ public class Article {
         Image = image;
     }
 
+    public long getId() {
+        return Id;
+    }
 
+    public void setId(long id) {
+        Id = id;
+    }
 }
