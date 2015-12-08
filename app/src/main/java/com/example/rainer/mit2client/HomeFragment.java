@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,17 +19,15 @@ import Entities.Article;
 public class HomeFragment extends Fragment {
 
     private List<Article> articles;
+    private ListView listView;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
         View view = inflater.inflate(R.layout.content_home_screen, container, false);
-        //initializeData(view);
-
         List<Article> list = inititalizeItemList();
         setAndFillListAdapter(list, view);
-
         return view;
     }
 
@@ -72,12 +71,12 @@ public class HomeFragment extends Fragment {
 
     private void setAndFillListAdapter(List<Article> list, View view) {
         ArticleAdapter adapter = new ArticleAdapter(getActivity(), R.layout.content_home_screen, list);
-        ListView listView = (ListView) view.findViewById(R.id.homescreen_listview_artical);
+        listView = (ListView) view.findViewById(R.id.homescreen_listview_article);
         listView.setAdapter(adapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Toast.makeText(getActivity(), "dawdwa", Toast.LENGTH_LONG).show();
             }
         });
     }

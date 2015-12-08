@@ -1,13 +1,16 @@
 package Adapters;
 
+import android.app.Activity;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.rainer.mit2client.ContentDetailFragment;
 import com.example.rainer.mit2client.R;
 
 import java.util.List;
@@ -20,8 +23,11 @@ import Entities.Article;
 public class ArticleAdapter extends ArrayAdapter<Article> {
 
 
+    private final Context context;
+
     public ArticleAdapter(Context context, int resource, List<Article> objects) {
         super(context, resource, objects);
+this.context = context;
     }
 
     @Override
@@ -39,6 +45,41 @@ public class ArticleAdapter extends ArrayAdapter<Article> {
         Article article = getItem(position);
 
         if (article != null) {
+
+            android.support.v7.widget.CardView card = (android.support.v7.widget.CardView) v.findViewById(R.id.homescreen_listview_artical_item_card);
+            if (card != null) {
+                card.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        ((Activity)context)
+                                .getFragmentManager()
+                                .beginTransaction()
+                                .add(R.id.fragmentParentViewGroup, new ContentDetailFragment())
+                                .addToBackStack("Content Detail")
+                                .commit();
+                    }
+                });
+            }
+
+            Button likeButton = (Button) v.findViewById(R.id.homescreen_listview_artical_item_like_button);
+            if (likeButton != null) {
+                likeButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+
+                    }
+                });
+            }
+
+            Button dislikeButton = (Button) v.findViewById(R.id.homescreen_listview_artical_item_dislike_button);
+            if (dislikeButton != null) {
+                dislikeButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+
+                    }
+                });
+            }
 
             ImageView image = (ImageView) v.findViewById(R.id.homescreen_listview_artical_item_imageview);
             if (image != null) {

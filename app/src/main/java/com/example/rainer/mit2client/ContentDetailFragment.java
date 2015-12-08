@@ -17,7 +17,7 @@ public class ContentDetailFragment extends Fragment{
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
-        view = inflater.inflate(R.layout.content_create_new_post_page, container, false);
+        view = inflater.inflate(R.layout.content_content_detail, container, false);
         initializeData();
         return view;
     }
