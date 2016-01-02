@@ -20,7 +20,7 @@ public class NavigationDrawer extends AppCompatActivity implements NavigationVie
     public void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.main_layout);
+        setContentView(R.layout.navigation_drawer_layout);
 
         if (savedInstanceState == null) {
             getFragmentManager()
@@ -31,7 +31,7 @@ public class NavigationDrawer extends AppCompatActivity implements NavigationVie
 
         initializeToolbar();
         initializeNavigationDrawer(toolbar);
-        setupDebugUser();
+        setupTestUser();
         //initializeData();
     }
 
@@ -40,7 +40,7 @@ public class NavigationDrawer extends AppCompatActivity implements NavigationVie
         setSupportActionBar(toolbar);
     }
 
-    private void setupDebugUser() {
+    private void setupTestUser() {
         User.Username = "Debuguser";
         User.Fullname = "Debug User";
         User.Gender = "Male";
@@ -99,7 +99,7 @@ public class NavigationDrawer extends AppCompatActivity implements NavigationVie
     }
 
     protected void logOut() {
-        Intent intent = new Intent(this, LoginScreen.class);
+        Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
     }
 

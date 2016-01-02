@@ -15,7 +15,7 @@ import java.util.List;
 
 import Adapters.ArticleAdapter;
 import Entities.Article;
-
+//http://stackoverflow.com/questions/17258020/switching-between-android-navigation-drawer-image-and-up-caret-when-using-fragme
 public class HomeFragment extends Fragment {
 
     private List<Article> articles;
