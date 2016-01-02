@@ -16,22 +16,22 @@ import com.example.rainer.mit2client.R;
 import java.util.List;
 
 import Entities.Article;
+import Util.AppSettings;
 
-/**
- * Created by Rainer on 5-12-2015.
- */
 public class ArticleAdapter extends ArrayAdapter<Article> {
 
 
     private final Context context;
+    private List<Article> objects;
 
     public ArticleAdapter(Context context, int resource, List<Article> objects) {
         super(context, resource, objects);
-this.context = context;
+        this.context = context;
+        this.objects = objects;
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, ViewGroup parent) {
 
         View v = convertView;
 
@@ -51,12 +51,11 @@ this.context = context;
                 card.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        ((Activity)context)
-                                .getFragmentManager()
-                                .beginTransaction()
-                                .add(R.id.fragmentParentViewGroup, new ContentDetailFragment())
-                                .addToBackStack("Content Detail")
-                                .commit();
+                        AppSettings.ArrayPosition = position;
+
+                        ((Activity) context)
+                                .getFragmentManager().beginTransaction().replace(R.id.fragmentParentViewGroup, new ContentDetailFragment())
+                                .addToBackStack("Content Detail").commit();
                     }
                 });
             }

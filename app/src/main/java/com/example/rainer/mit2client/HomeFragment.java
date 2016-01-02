@@ -2,7 +2,6 @@ package com.example.rainer.mit2client;
 
 import android.app.Fragment;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,15 +14,16 @@ import java.util.List;
 
 import Adapters.ArticleAdapter;
 import Entities.Article;
+import Util.AppSettings;
+
 //http://stackoverflow.com/questions/17258020/switching-between-android-navigation-drawer-image-and-up-caret-when-using-fragme
 public class HomeFragment extends Fragment {
 
     private List<Article> articles;
     private ListView listView;
 
-    @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
         View view = inflater.inflate(R.layout.content_home_screen, container, false);
         List<Article> list = inititalizeItemList();
@@ -65,7 +65,7 @@ public class HomeFragment extends Fragment {
                 "De beschuldigingen richting Taylor komen van Benny Alon, een Israëlische oud-profvoetballer en eigenaar van marketingbureau JB Sports Marketing. Hij heeft onderzoek gedaan naar de illegale kaartverkoop voor het WK.\n" +
                 "\n" +
                 "Taylor heeft per mail laten weten ''geen concrete wetenschap te hebben van de feiten die aan de beschuldigingen ten grondslag liggen", R.drawable.ook_nederlandse_sportmarketeer_schuldig_corruptie_binnen_fifa, 5156);
-
+        AppSettings.Articles = articles;
         return articles;
     }
 

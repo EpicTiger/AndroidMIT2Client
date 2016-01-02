@@ -2,9 +2,6 @@ package Entities;
 
 import android.graphics.drawable.Drawable;
 
-/**
- * Created by Rainer on 5-12-2015.
- */
 public class Article {
 
     private long Id;
