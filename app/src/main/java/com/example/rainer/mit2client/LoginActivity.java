@@ -38,7 +38,7 @@ public class LoginActivity extends AppCompatActivity implements FragmentManager.
         loginData.setEmail("dwahkdwa");
         loginData.setPassword("dawdwa");
 
-    new LoginThriftClass().execute(loginData);
+        new LoginThriftClass().execute(loginData);
     }
 
     @Override

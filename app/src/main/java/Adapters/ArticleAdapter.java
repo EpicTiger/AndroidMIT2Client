@@ -18,24 +18,28 @@ import java.util.List;
 import Entities.Article;
 import Util.AppSettings;
 
-public class ArticleAdapter extends ArrayAdapter<Article> {
+public class ArticleAdapter extends ArrayAdapter<Article>
+{
 
 
     private final Context context;
     private List<Article> objects;
 
-    public ArticleAdapter(Context context, int resource, List<Article> objects) {
+    public ArticleAdapter(Context context, int resource, List<Article> objects)
+    {
         super(context, resource, objects);
         this.context = context;
         this.objects = objects;
     }
 
     @Override
-    public View getView(final int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, ViewGroup parent)
+    {
 
         View v = convertView;
 
-        if (v == null) {
+        if (v == null)
+        {
 
             LayoutInflater vi;
             vi = LayoutInflater.from(getContext());
@@ -44,13 +48,17 @@ public class ArticleAdapter extends ArrayAdapter<Article> {
 
         Article article = getItem(position);
 
-        if (article != null) {
+        if (article != null)
+        {
 
             android.support.v7.widget.CardView card = (android.support.v7.widget.CardView) v.findViewById(R.id.homescreen_listview_artical_item_card);
-            if (card != null) {
-                card.setOnClickListener(new View.OnClickListener() {
+            if (card != null)
+            {
+                card.setOnClickListener(new View.OnClickListener()
+                {
                     @Override
-                    public void onClick(View view) {
+                    public void onClick(View view)
+                    {
                         AppSettings.ArrayPosition = position;
 
                         ((Activity) context)
@@ -61,45 +69,55 @@ public class ArticleAdapter extends ArrayAdapter<Article> {
             }
 
             Button likeButton = (Button) v.findViewById(R.id.homescreen_listview_artical_item_like_button);
-            if (likeButton != null) {
-                likeButton.setOnClickListener(new View.OnClickListener() {
+            if (likeButton != null)
+            {
+                likeButton.setOnClickListener(new View.OnClickListener()
+                {
                     @Override
-                    public void onClick(View view) {
+                    public void onClick(View view)
+                    {
 
                     }
                 });
             }
 
             Button dislikeButton = (Button) v.findViewById(R.id.homescreen_listview_artical_item_dislike_button);
-            if (dislikeButton != null) {
-                dislikeButton.setOnClickListener(new View.OnClickListener() {
+            if (dislikeButton != null)
+            {
+                dislikeButton.setOnClickListener(new View.OnClickListener()
+                {
                     @Override
-                    public void onClick(View view) {
+                    public void onClick(View view)
+                    {
 
                     }
                 });
             }
 
             ImageView image = (ImageView) v.findViewById(R.id.homescreen_listview_artical_item_imageview);
-            if (image != null) {
+            if (image != null)
+            {
                 image.setImageDrawable(article.getImage());
             }
 
             TextView title = (TextView) v.findViewById(R.id.homescreen_listview_artical_item_title);
 
-            if (title != null) {
+            if (title != null)
+            {
                 title.setText(article.getTitle());
             }
 
             TextView text = (TextView) v.findViewById(R.id.homescreen_listview_artical_item_text);
 
-            if (text != null) {
+            if (text != null)
+            {
                 text.setText(article.getText());
             }
 
             TextView views = (TextView) v.findViewById(R.id.homescreen_listview_artical_item_views);
 
-            if (views != null) {
+            if (views != null)
+            {
                 views.setText(article.getViews() + " views");
             }
         }

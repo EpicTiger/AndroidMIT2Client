@@ -4,7 +4,8 @@ import java.util.List;
 
 import Entities.Article;
 
-public class AppSettings {
+public class AppSettings
+{
 
     public static int ArrayPosition;
 

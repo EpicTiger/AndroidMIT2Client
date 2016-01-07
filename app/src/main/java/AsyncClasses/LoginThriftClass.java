@@ -48,8 +48,7 @@ public class LoginThriftClass extends AsyncTask<LoginData, Integer, LoginResult>
         if (result != null)
         {
             Log.d("result: ", (Boolean.toString(result.isLoginSuccessful)));
-        }
-        else
+        } else
         {
             Log.d("result: ", "Null exception");
         }

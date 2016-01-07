@@ -17,13 +17,15 @@ import Entities.Article;
 import Util.AppSettings;
 
 //http://stackoverflow.com/questions/17258020/switching-between-android-navigation-drawer-image-and-up-caret-when-using-fragme
-public class HomeFragment extends Fragment {
+public class HomeFragment extends Fragment
+{
 
     private List<Article> articles;
     private ListView listView;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
+    {
         super.onCreateView(inflater, container, savedInstanceState);
         View view = inflater.inflate(R.layout.content_home_screen, container, false);
         List<Article> list = inititalizeItemList();
@@ -31,7 +33,8 @@ public class HomeFragment extends Fragment {
         return view;
     }
 
-    private List<Article> inititalizeItemList() {
+    private List<Article> inititalizeItemList()
+    {
         articles = new ArrayList<>();
 
         createArticle(1, "IS claimt betrokkenheid bij schietpartij Californië", "De man en vrouw (Syed Rizwan Farook en Tashfeen Malik) die deze week een bloedbad aanrichtten in het Amerikaanse San Bernardino, waren aanhangers van Islamitische Staat (IS).\n" +
@@ -69,19 +72,23 @@ public class HomeFragment extends Fragment {
         return articles;
     }
 
-    private void setAndFillListAdapter(List<Article> list, View view) {
+    private void setAndFillListAdapter(List<Article> list, View view)
+    {
         ArticleAdapter adapter = new ArticleAdapter(getActivity(), R.layout.content_home_screen, list);
         listView = (ListView) view.findViewById(R.id.homescreen_listview_article);
         listView.setAdapter(adapter);
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener()
+        {
             @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l)
+            {
                 Toast.makeText(getActivity(), "dawdwa", Toast.LENGTH_LONG).show();
             }
         });
     }
 
-    private void createArticle(long id, String title, String text, int resource, int views) {
+    private void createArticle(long id, String title, String text, int resource, int views)
+    {
         Article result = new Article();
         result.setId(id);
         result.setTitle(title);

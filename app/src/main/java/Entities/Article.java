@@ -2,7 +2,8 @@ package Entities;
 
 import android.graphics.drawable.Drawable;
 
-public class Article {
+public class Article
+{
 
     private long Id;
     private String Title;
@@ -10,43 +11,53 @@ public class Article {
     private Drawable Image;
     private int Views;
 
-    public int getViews() {
+    public int getViews()
+    {
         return Views;
     }
 
-    public void setViews(int views) {
+    public void setViews(int views)
+    {
         Views = views;
     }
 
-    public String getTitle() {
+    public String getTitle()
+    {
         return Title;
     }
 
-    public void setTitle(String title) {
+    public void setTitle(String title)
+    {
         Title = title;
     }
 
-    public String getText() {
+    public String getText()
+    {
         return Text;
     }
 
-    public void setText(String text) {
+    public void setText(String text)
+    {
         Text = text;
     }
 
-    public Drawable getImage() {
+    public Drawable getImage()
+    {
         return Image;
     }
 
-    public void setImage(Drawable image) {
+    public void setImage(Drawable image)
+    {
         Image = image;
     }
 
-    public long getId() {
+    public long getId()
+    {
         return Id;
     }
 
-    public void setId(long id) {
+    public void setId(long id)
+    {
         Id = id;
     }
 }

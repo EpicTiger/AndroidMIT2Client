@@ -12,17 +12,20 @@ import android.view.MenuItem;
 
 import Entities.User;
 
-public class NavigationDrawer extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class NavigationDrawer extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener
+{
 
     private Toolbar toolbar;
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState)
+    {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.navigation_drawer_layout);
 
-        if (savedInstanceState == null) {
+        if (savedInstanceState == null)
+        {
             getFragmentManager()
                     .beginTransaction()
                     .add(R.id.fragmentParentViewGroup, new HomeFragment())
@@ -35,12 +38,14 @@ public class NavigationDrawer extends AppCompatActivity implements NavigationVie
         //initializeData();
     }
 
-    private void initializeToolbar() {
+    private void initializeToolbar()
+    {
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
     }
 
-    private void setupTestUser() {
+    private void setupTestUser()
+    {
         User.Username = "Debuguser";
         User.Fullname = "Debug User";
         User.Gender = "Male";
@@ -50,7 +55,8 @@ public class NavigationDrawer extends AppCompatActivity implements NavigationVie
         User.Town = "Amsterdam";
     }
 
-    protected void initializeNavigationDrawer(Toolbar toolbar) {
+    protected void initializeNavigationDrawer(Toolbar toolbar)
+    {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -62,24 +68,30 @@ public class NavigationDrawer extends AppCompatActivity implements NavigationVie
     }
 
     @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
+    public boolean onNavigationItemSelected(MenuItem item)
+    {
         int id = item.getItemId();
 
-        if (id == R.id.nav_home) {
+        if (id == R.id.nav_home)
+        {
             getFragmentManager().beginTransaction()
                     .replace(R.id.fragmentParentViewGroup, new HomeFragment())
                     .commit();
-        } else if (id == R.id.nav_profile) {
+        } else if (id == R.id.nav_profile)
+        {
             getFragmentManager().beginTransaction()
                     .replace(R.id.fragmentParentViewGroup, new ProfileFragment())
                     .commit();
-        } else if (id == R.id.nav_create_new_post) {
+        } else if (id == R.id.nav_create_new_post)
+        {
             getFragmentManager().beginTransaction()
                     .replace(R.id.fragmentParentViewGroup, new CreateNewPostFragment())
                     .commit();
-        } else if (id == R.id.nav_settings) {
+        } else if (id == R.id.nav_settings)
+        {
 
-        } else if (id == R.id.nav_logout) {
+        } else if (id == R.id.nav_logout)
+        {
             logOut();
         }
 
@@ -89,16 +101,20 @@ public class NavigationDrawer extends AppCompatActivity implements NavigationVie
     }
 
     @Override
-    public void onBackPressed() {
+    public void onBackPressed()
+    {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
+        if (drawer.isDrawerOpen(GravityCompat.START))
+        {
             drawer.closeDrawer(GravityCompat.START);
-        } else {
+        } else
+        {
             super.onBackPressed();
         }
     }
 
-    protected void logOut() {
+    protected void logOut()
+    {
         Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
     }

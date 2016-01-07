@@ -9,17 +9,20 @@ import android.widget.TextView;
 
 import Entities.User;
 
-public class ProfileFragment extends Fragment {
+public class ProfileFragment extends Fragment
+{
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
+    {
         super.onCreateView(inflater, container, savedInstanceState);
         View view = inflater.inflate(R.layout.content_profile_page, container, false);
         initializeData(view);
         return view;
     }
 
-    private void initializeData(View view) {
+    private void initializeData(View view)
+    {
 
         TextView fullname = (TextView) view.findViewById(R.id.profilescreen_textview_fullname);
         TextView gender = (TextView) view.findViewById(R.id.profilescreen_textview_gender);

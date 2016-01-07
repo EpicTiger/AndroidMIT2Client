@@ -1,6 +1,7 @@
 package Entities;
 
-public class User {
+public class User
+{
 
     public static String Username;
     public static String Fullname;
