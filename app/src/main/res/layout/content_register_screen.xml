@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
-    tools:context=".RegisterFragment">
+                                                 xmlns:app="http://schemas.android.com/apk/res-auto"
+                                                 xmlns:tools="http://schemas.android.com/tools"
+                                                 android:layout_width="match_parent"
+                                                 android:layout_height="match_parent"
+                                                 android:fitsSystemWindows="true"
+                                                 tools:context=".RegisterFragment">
 
 
     <FrameLayout
@@ -43,7 +43,7 @@
                         android:layout_height="wrap_content"
                         android:hint="@string/email_address"
                         android:inputType="textEmailAddress"
-                        android:textColorHint="@color/white" />
+                        android:textColorHint="@color/white"/>
 
                 </android.support.design.widget.TextInputLayout>
 
@@ -54,28 +54,12 @@
                     app:hintTextAppearance="@style/TextAppearence.App.TextInputLayout">
 
                     <EditText
-                        android:id="@+id/registerscreen_first_password"
+                        android:id="@+id/registerscreen_password"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="@string/Password"
                         android:inputType="textPassword"
-                        android:textColorHint="@color/white" />
-
-                </android.support.design.widget.TextInputLayout>
-
-                <android.support.design.widget.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/fab_margin"
-                    app:hintTextAppearance="@style/TextAppearence.App.TextInputLayout">
-
-                    <EditText
-                        android:id="@+id/registerscreen_confirm_password"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="@string/ConfirmPassword"
-                        android:inputType="textPassword"
-                        android:textColorHint="@color/white" />
+                        android:textColorHint="@color/white"/>
 
                 </android.support.design.widget.TextInputLayout>
 
@@ -98,14 +82,14 @@
                 android:orientation="horizontal">
 
                 <Button
-                    android:id="@+id/Register_Button"
+                    android:id="@+id/registerscreen_button_register"
                     style="?android:attr/buttonBarButtonStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_marginEnd="8dp"
                     android:text="@string/Register"
                     android:textAlignment="center"
-                    android:textColor="@color/colorAccent" />
+                    android:textColor="@color/colorAccent"/>
 
             </LinearLayout>
 

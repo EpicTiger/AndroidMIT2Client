@@ -7,9 +7,23 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
+
+import butterknife.Bind;
+import butterknife.ButterKnife;
 
 public class LoginFragment extends Fragment
 {
+    @Bind(R.id.loginscreen_register_button)
+    Button button_Register;
+    @Bind(R.id.loginscreen_login_button)
+    Button button_Login;
+    @Bind(R.id.loginscreen_changepassword_button)
+    Button button_ChangePassword;
+    @Bind(R.id.loginscreen_email_address)
+    TextView textView_Email;
+    @Bind(R.id.loginscreen_password)
+    TextView textView_Password;
 
     View view;
 
@@ -18,6 +32,7 @@ public class LoginFragment extends Fragment
     {
         super.onCreateView(inflater, container, savedInstanceState);
         view = inflater.inflate(R.layout.content_login_screen, container, false);
+        ButterKnife.bind(this, view);
 
         initializeButtons();
 
@@ -26,18 +41,19 @@ public class LoginFragment extends Fragment
 
     private void initializeButtons()
     {
-        final Button loginButton = (Button) view.findViewById(R.id.loginscreen_login_button);
-        loginButton.setOnClickListener(new View.OnClickListener()
+        button_Login.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View view)
             {
-                gotoHomeSreen();
+                String email = (textView_Email.getText().toString().trim());
+                String password = (textView_Password.getText().toString().trim());
+
+                ((LoginActivity)getActivity()).executeLogin(email, password);
             }
         });
 
-        Button registerButton = (Button) view.findViewById(R.id.loginscreen_register_button);
-        registerButton.setOnClickListener(new View.OnClickListener()
+        button_Register.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View view)
@@ -46,8 +62,7 @@ public class LoginFragment extends Fragment
             }
         });
 
-        Button changePasswordButton = (Button) view.findViewById(R.id.loginscreen_changepassword_button);
-        changePasswordButton.setOnClickListener(new View.OnClickListener()
+        button_ChangePassword.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View v)

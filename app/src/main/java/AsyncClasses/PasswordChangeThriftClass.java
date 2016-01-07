@@ -9,17 +9,17 @@ import org.apache.thrift.transport.TSocket;
 import org.apache.thrift.transport.TTransport;
 
 import Politics247Generated.AuthenticationClientService;
-import Politics247Generated.RegistrationData;
-import Politics247Generated.RegistrationResult;
+import Politics247Generated.LoginResult;
+import Politics247Generated.PasswordChangeData;
+import Politics247Generated.PasswordChangeResult;
 import Util.AppSettings;
 
-public class RegistrationThriftClass extends AsyncTask<RegistrationData, Integer, RegistrationResult>
+public class PasswordChangeThriftClass extends AsyncTask<PasswordChangeData, Integer, PasswordChangeResult>
 {
     @Override
-    protected RegistrationResult doInBackground(RegistrationData... registrationDatas)
+    protected PasswordChangeResult doInBackground(PasswordChangeData... passwordChangeDatas)
     {
-        RegistrationResult result = null;
-
+        PasswordChangeResult result = null;
         try
         {
             TSocket tsocket = new TSocket(AppSettings.IpAdress, AppSettings.Port);
@@ -29,7 +29,7 @@ public class RegistrationThriftClass extends AsyncTask<RegistrationData, Integer
             TProtocol protocol = new TBinaryProtocol(transport);
             AuthenticationClientService.Client client = new AuthenticationClientService.Client(protocol);
 
-            result = client.Register(registrationDatas[0]);
+            result = client.ChangePassword(passwordChangeDatas[0]);
 
             transport.close();
         } catch (Exception x)
@@ -44,11 +44,10 @@ public class RegistrationThriftClass extends AsyncTask<RegistrationData, Integer
 
     }
 
-    protected void onPostExecute(RegistrationResult result)
+    protected void onPostExecute(LoginResult result)
     {
         if (result != null)
         {
-
         } else
         {
             Log.d("result: ", "Null exception");

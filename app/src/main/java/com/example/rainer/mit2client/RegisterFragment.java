@@ -9,9 +9,22 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
+import android.widget.TextView;
+
+import Politics247Generated.UserType;
+import butterknife.Bind;
+import butterknife.ButterKnife;
 
 public class RegisterFragment extends Fragment
 {
+    @Bind(R.id.registerscreen_email_address)
+    TextView textView_Email;
+    @Bind(R.id.registerscreen_password)
+    TextView textView_Password;
+    @Bind(R.id.registerscreen_usertype_spinner)
+    Spinner spinner_UserType;
+    @Bind(R.id.registerscreen_button_register)
+    Button button_Register;
 
     View view;
 
@@ -21,6 +34,7 @@ public class RegisterFragment extends Fragment
     {
         super.onCreateView(inflater, container, savedInstanceState);
         view = inflater.inflate(R.layout.content_register_screen, container, false);
+        ButterKnife.bind(this, view);
 
         initializeButtons();
         initializeSpinners();
@@ -30,12 +44,17 @@ public class RegisterFragment extends Fragment
 
     private void initializeButtons()
     {
-        Button registerButton = (Button) view.findViewById(R.id.Register_Button);
-        registerButton.setOnClickListener(new View.OnClickListener()
+        button_Register.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View view)
             {
+                String email = (textView_Email.getText().toString().trim());
+                String password = (textView_Password.getText().toString().trim());
+                UserType userType = UserType.findByValue(spinner_UserType.getSelectedItemPosition());
+
+                ((LoginActivity) getActivity()).executeRegistration(email, password, userType);
+
                 getFragmentManager().beginTransaction()
                         .replace(R.id.fragmentParentViewGroup, new LoginFragment())
                         .commit();
@@ -45,9 +64,8 @@ public class RegisterFragment extends Fragment
 
     private void initializeSpinners()
     {
-        Spinner userTypeSpinner = (Spinner) view.findViewById(R.id.registerscreen_usertype_spinner);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getActivity(), R.array.user_type_array, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        userTypeSpinner.setAdapter(adapter);
+        spinner_UserType.setAdapter(adapter);
     }
 }
