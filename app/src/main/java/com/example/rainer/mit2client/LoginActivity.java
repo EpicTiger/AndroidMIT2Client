@@ -17,7 +17,7 @@ public class LoginActivity extends AppCompatActivity implements FragmentManager.
     {
         super.onCreate(savedInstanceState);
 
-        ExexuteThrift();
+        ExecuteThrift();
 
         setContentView(R.layout.login_layout);
 
@@ -32,7 +32,7 @@ public class LoginActivity extends AppCompatActivity implements FragmentManager.
         }
     }
 
-    private void ExexuteThrift()
+    private void ExecuteThrift()
     {
         LoginData loginData = new LoginData();
         loginData.setEmail("dwahkdwa");

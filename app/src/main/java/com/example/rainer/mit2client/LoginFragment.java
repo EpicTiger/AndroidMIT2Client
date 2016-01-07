@@ -45,6 +45,16 @@ public class LoginFragment extends Fragment
                 gotoRegisterScreen();
             }
         });
+
+        Button changePasswordButton = (Button) view.findViewById(R.id.loginscreen_changepassword_button);
+        changePasswordButton.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                gotoChangePasswordScreen();
+            }
+        });
     }
 
     private void gotoHomeSreen()
@@ -58,6 +68,14 @@ public class LoginFragment extends Fragment
         getFragmentManager().beginTransaction()
                 .replace(R.id.fragmentParentViewGroup, new RegisterFragment())
                 .addToBackStack("Register fragment")
+                .commit();
+    }
+
+    private void gotoChangePasswordScreen()
+    {
+        getFragmentManager().beginTransaction()
+                .replace(R.id.fragmentParentViewGroup, new ChangePasswordFragment())
+                .addToBackStack("Change Password fragment")
                 .commit();
     }
 }
