@@ -1,19 +1,12 @@
 package com.example.rainer.mit2client;
 
 import android.app.FragmentManager;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
-import org.apache.thrift.protocol.TBinaryProtocol;
-import org.apache.thrift.protocol.TProtocol;
-import org.apache.thrift.transport.TSocket;
-import org.apache.thrift.transport.TTransport;
-
-import Politics247Generated.AuthenticationClientService;
+import AsyncClasses.LoginThriftClass;
 import Politics247Generated.LoginData;
-import Politics247Generated.LoginResult;
 
 
 public class LoginActivity extends AppCompatActivity implements FragmentManager.OnBackStackChangedListener
