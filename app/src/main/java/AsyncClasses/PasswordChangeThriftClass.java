@@ -16,6 +16,8 @@ import Util.AppSettings;
 
 public class PasswordChangeThriftClass extends AsyncTask<PasswordChangeData, Integer, PasswordChangeResult>
 {
+    public AsyncResponse delegate = null;
+
     @Override
     protected PasswordChangeResult doInBackground(PasswordChangeData... passwordChangeDatas)
     {
@@ -44,13 +46,8 @@ public class PasswordChangeThriftClass extends AsyncTask<PasswordChangeData, Int
 
     }
 
-    protected void onPostExecute(LoginResult result)
+    protected void onPostExecute(PasswordChangeResult result)
     {
-        if (result != null)
-        {
-        } else
-        {
-            Log.d("result: ", "Null exception");
-        }
+        delegate.passwordChangedProcessFinish(result);
     }
 }

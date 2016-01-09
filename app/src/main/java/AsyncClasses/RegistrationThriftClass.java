@@ -15,6 +15,8 @@ import Util.AppSettings;
 
 public class RegistrationThriftClass extends AsyncTask<RegistrationData, Integer, RegistrationResult>
 {
+    public AsyncResponse delegate = null;
+
     @Override
     protected RegistrationResult doInBackground(RegistrationData... registrationDatas)
     {
@@ -46,12 +48,6 @@ public class RegistrationThriftClass extends AsyncTask<RegistrationData, Integer
 
     protected void onPostExecute(RegistrationResult result)
     {
-        if (result != null)
-        {
-
-        } else
-        {
-            Log.d("result: ", "Null exception");
-        }
+       delegate.registrationProcessFinish(result);
     }
 }

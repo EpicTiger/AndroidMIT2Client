@@ -1,7 +1,6 @@
 package AsyncClasses;
 
 import android.os.AsyncTask;
-import android.util.Log;
 
 import org.apache.thrift.protocol.TBinaryProtocol;
 import org.apache.thrift.protocol.TProtocol;
@@ -15,6 +14,8 @@ import Util.AppSettings;
 
 public class LoginThriftClass extends AsyncTask<LoginData, Integer, LoginResult>
 {
+    public AsyncResponse delegate = null;
+
     @Override
     protected LoginResult doInBackground(LoginData... loginDatas)
     {
@@ -45,12 +46,6 @@ public class LoginThriftClass extends AsyncTask<LoginData, Integer, LoginResult>
 
     protected void onPostExecute(LoginResult result)
     {
-        if (result != null)
-        {
-            Log.d("result: ", (Boolean.toString(result.isLoginSuccessful)));
-        } else
-        {
-            Log.d("result: ", "Null exception");
-        }
+        delegate.loginProcessFinish(result);
     }
 }
