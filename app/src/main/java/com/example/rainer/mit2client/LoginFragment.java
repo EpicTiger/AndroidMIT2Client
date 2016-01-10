@@ -2,7 +2,6 @@ package com.example.rainer.mit2client;
 
 import android.app.Fragment;
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,9 +9,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
-import AsyncClasses.AsyncResponse;
-import Politics247Generated.LoginData;
-import Politics247Generated.LoginResult;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 

@@ -1,5 +1,7 @@
 package AsyncClasses;
 
+import android.view.View;
+
 import Politics247Generated.LoginResult;
 import Politics247Generated.PasswordChangeResult;
 import Politics247Generated.RegistrationResult;

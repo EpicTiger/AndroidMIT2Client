@@ -56,16 +56,21 @@ public class LoginActivity extends AppCompatActivity implements FragmentManager.
         registrationData.setPassword(password);
         registrationData.setUserType(userType);
 
-        new RegistrationThriftClass().execute(registrationData);
+        RegistrationThriftClass registrationThriftClass = new RegistrationThriftClass();
+        registrationThriftClass.delegate = this;
+        registrationThriftClass.execute(registrationData);
     }
 
-    public void executeRegistration(String email, String oldPassword, String newPassword, String confirmPassword)
+    public void executePasswordChange(String email, String oldPassword, String newPassword)
     {
         PasswordChangeData passwordChangeData = new PasswordChangeData();
+        passwordChangeData.setEmail(email);
         passwordChangeData.setOldPassword(oldPassword);
         passwordChangeData.setNewPassword(newPassword);
 
-        new PasswordChangeThriftClass().execute(passwordChangeData);
+        PasswordChangeThriftClass passwordChangeThriftClass = new PasswordChangeThriftClass();
+        passwordChangeThriftClass.delegate = this;
+        passwordChangeThriftClass.execute(passwordChangeData);
     }
 
     @Override
