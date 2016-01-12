@@ -35,6 +35,7 @@
     <string name="Like">Like</string>
     <string name="ChangePassword">Change Password</string>
     <string name="OldPassword">Old Password</string>
+    <string name="newPassword">New Password</string>
 
     <string-array name="user_type_array">
         <item>Normal user</item>

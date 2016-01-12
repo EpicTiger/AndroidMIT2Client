@@ -2,6 +2,7 @@ package com.example.rainer.mit2client;
 
 import android.app.FragmentManager;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.Toast;
@@ -108,12 +109,24 @@ public class LoginActivity extends AppCompatActivity implements FragmentManager.
     @Override
     public void registrationProcessFinish(RegistrationResult result)
     {
-        if (result != null)
+        if (result == null)
         {
-            Toast.makeText(this, "Registration Success", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        if (result.isRegistrationSuccessful)
+        {
+            super.onBackPressed();
+            Toast.makeText(this, "Registration successful", Toast.LENGTH_LONG).show();
         } else
         {
-            Toast.makeText(this, "Registration Error", Toast.LENGTH_SHORT).show();
+            if (!result.isEmailValid)
+            {
+                Toast.makeText(this, "This is not a valid e-mail address", Toast.LENGTH_LONG).show();
+            } else if (!result.isIsPasswordValid())
+            {
+                Toast.makeText(this, "This is not a valid password", Toast.LENGTH_LONG).show();
+            }
         }
     }
 

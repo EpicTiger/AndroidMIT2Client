@@ -54,10 +54,6 @@ public class RegisterFragment extends Fragment
                 UserType userType = UserType.findByValue(spinner_UserType.getSelectedItemPosition());
 
                 ((LoginActivity) getActivity()).executeRegistration(email, password, userType);
-
-                getFragmentManager().beginTransaction()
-                        .replace(R.id.fragmentParentViewGroup, new LoginFragment())
-                        .commit();
             }
         });
     }

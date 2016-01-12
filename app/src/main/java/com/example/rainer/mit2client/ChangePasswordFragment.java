@@ -10,6 +10,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import java.util.Objects;
+
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
@@ -53,12 +55,12 @@ public class ChangePasswordFragment extends Fragment
                 String newPassword = (textView_NewPassword.getText().toString().trim());
                 String confirmPassword = (textView_ConfirmPassword.getText().toString().trim());
 
-                if (newPassword == confirmPassword)
+                if (newPassword.equals(confirmPassword))
                 {
                     ((LoginActivity) getActivity()).executePasswordChange(email, oldPassword, newPassword);
                 } else
                 {
-                    Snackbar.make(view, "The new passwords don't match", Snackbar.LENGTH_SHORT);
+                    Snackbar.make(view, "The new passwords don't match", Snackbar.LENGTH_SHORT).show();
                 }
 
 //                ((LoginActivity) getActivity()).
