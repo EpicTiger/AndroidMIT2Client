@@ -2,7 +2,6 @@ package Adapters;
 
 import android.app.Activity;
 import android.content.Context;
-import android.text.method.CharacterPickerDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +10,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.rainer.mit2client.AddCommentFragment;
 import com.example.rainer.mit2client.ContentDetailFragment;
 import com.example.rainer.mit2client.R;
 
@@ -18,6 +18,7 @@ import java.util.List;
 
 import Entities.Article;
 import Util.AppSettings;
+import Util.Util;
 
 public class ArticleAdapter extends ArrayAdapter<Article>
 {
@@ -62,7 +63,7 @@ public class ArticleAdapter extends ArrayAdapter<Article>
 
                         ((Activity) context)
                                 .getFragmentManager().beginTransaction().replace(R.id.fragmentParentViewGroup, new ContentDetailFragment())
-                                .addToBackStack("Content Detail").commit();
+                                .addToBackStack(String.valueOf(R.string.nav_drawer_fragment_content_detail)).commit();
                     }
                 });
             }
@@ -75,7 +76,7 @@ public class ArticleAdapter extends ArrayAdapter<Article>
                     @Override
                     public void onClick(View view)
                     {
-
+                        Util.ShowSnackbarLong(view, "Liked");
                     }
                 });
             }
@@ -88,7 +89,7 @@ public class ArticleAdapter extends ArrayAdapter<Article>
                     @Override
                     public void onClick(View view)
                     {
-
+                        Util.ShowSnackbarLong(view, "Disliked");
                     }
                 });
             }
@@ -101,7 +102,9 @@ public class ArticleAdapter extends ArrayAdapter<Article>
                     @Override
                     public void onClick(View v)
                     {
-
+                        ((Activity) context)
+                                .getFragmentManager().beginTransaction().replace(R.id.fragmentParentViewGroup, new AddCommentFragment())
+                                .addToBackStack(String.valueOf(R.string.nav_drawer_fragment_add_comment)).commit();
                     }
                 });
             }

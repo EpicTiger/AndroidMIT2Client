@@ -49,9 +49,9 @@ public class LoginFragment extends Fragment
                 String email = (textView_Email.getText().toString().trim());
                 String password = (textView_Password.getText().toString().trim());
 
-                ((LoginActivity)getActivity()).executeLogin(email, password);
+                //((LoginActivity)getActivity()).executeLogin(email, password);
 
-//                gotoHomeSreen();
+                gotoHomeSreen();
             }
         });
 

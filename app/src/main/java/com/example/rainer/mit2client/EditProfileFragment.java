@@ -11,27 +11,30 @@ import Entities.User;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-public class ProfileFragment extends Fragment
+public class EditProfileFragment extends Fragment
 {
-    @Bind(R.id.profilescreen_textview_fullname)
+    @Bind(R.id.profile_edit_name)
     TextView textView_Fullname;
-    @Bind(R.id.profilescreen_textview_gender)
+    @Bind(R.id.profile_edit_gender)
     TextView textView_Gender;
-    @Bind(R.id.profilescreen_textview_nationality)
+    @Bind(R.id.profile_edit_nationality)
     TextView textView_Nationality;
-    @Bind(R.id.profilescreen_textview_dateofbirth)
+    @Bind(R.id.profile_edit_date_of_birth)
     TextView textView_DateOfBirth;
-    @Bind(R.id.profilescreen_textview_politicalpreference)
-    TextView textView_PoliticalPrefeence;
-    @Bind(R.id.profilescreen_textview_town)
+    @Bind(R.id.profile_edit_political_pref)
+    TextView textView_PoliticalPreference;
+    @Bind(R.id.profile_edit_town)
     TextView textView_Town;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
         super.onCreateView(inflater, container, savedInstanceState);
-        View view = inflater.inflate(R.layout.content_profile_page, container, false);
+        View view = inflater.inflate(R.layout.content_profile_edit_page, container, false);
         ButterKnife.bind(this, view);
+
+        User.Fullname = "Wiel Kruiwagen";
+        User.Town = "Heerln";
 
         initializeData();
         return view;
@@ -43,7 +46,7 @@ public class ProfileFragment extends Fragment
         textView_Gender.setText(User.Gender);
         textView_Nationality.setText(User.Nationality);
         textView_DateOfBirth.setText(User.DateOfBirth);
-        textView_PoliticalPrefeence.setText(User.PoliticalPreference);
+        textView_PoliticalPreference.setText(User.PoliticalPreference);
         textView_Town.setText(User.Town);
     }
 }
