@@ -1,14 +1,21 @@
 package com.example.rainer.mit2client;
 
+import android.app.SearchManager;
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.SearchView;
 
 import Entities.User;
 
@@ -23,6 +30,13 @@ public class NavigationDrawer extends AppCompatActivity implements NavigationVie
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.navigation_drawer_layout);
+
+        // Get the intent, verify the action and get the query
+        Intent intent = getIntent();
+        if (Intent.ACTION_SEARCH.equals(intent.getAction()))
+        {
+            String query = intent.getStringExtra(SearchManager.QUERY);
+        }
 
         if (savedInstanceState == null)
         {
@@ -104,9 +118,15 @@ public class NavigationDrawer extends AppCompatActivity implements NavigationVie
     public void onBackPressed()
     {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        int count = getFragmentManager().getBackStackEntryCount();
+
         if (drawer.isDrawerOpen(GravityCompat.START))
         {
             drawer.closeDrawer(GravityCompat.START);
+        }
+        if (count > 0)
+        {
+            getFragmentManager().popBackStack();
         } else
         {
             super.onBackPressed();
@@ -119,4 +139,11 @@ public class NavigationDrawer extends AppCompatActivity implements NavigationVie
         startActivity(intent);
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu)
+    {
+        MenuInflater menuInflater = new MenuInflater(this);
+        menuInflater.inflate(R.menu.menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
 }

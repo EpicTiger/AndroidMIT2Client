@@ -46,12 +46,12 @@ public class LoginFragment extends Fragment
             @Override
             public void onClick(View view)
             {
-//                String email = (textView_Email.getText().toString().trim());
-//                String password = (textView_Password.getText().toString().trim());
-//
-//                ((LoginActivity)getActivity()).executeLogin(email, password);
+                String email = (textView_Email.getText().toString().trim());
+                String password = (textView_Password.getText().toString().trim());
 
-                gotoHomeSreen();
+                ((LoginActivity)getActivity()).executeLogin(email, password);
+
+//                gotoHomeSreen();
             }
         });
 

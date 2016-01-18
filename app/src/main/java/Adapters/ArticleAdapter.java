@@ -2,6 +2,7 @@ package Adapters;
 
 import android.app.Activity;
 import android.content.Context;
+import android.text.method.CharacterPickerDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,8 +21,6 @@ import Util.AppSettings;
 
 public class ArticleAdapter extends ArrayAdapter<Article>
 {
-
-
     private final Context context;
     private List<Article> objects;
 
@@ -36,14 +35,14 @@ public class ArticleAdapter extends ArrayAdapter<Article>
     public View getView(final int position, View convertView, ViewGroup parent)
     {
 
-        View v = convertView;
+        View view = convertView;
 
-        if (v == null)
+        if (view == null)
         {
 
             LayoutInflater vi;
             vi = LayoutInflater.from(getContext());
-            v = vi.inflate(R.layout.content_home_screen_list_item, null);
+            view = vi.inflate(R.layout.content_home_screen_list_item, null);
         }
 
         Article article = getItem(position);
@@ -51,7 +50,7 @@ public class ArticleAdapter extends ArrayAdapter<Article>
         if (article != null)
         {
 
-            android.support.v7.widget.CardView card = (android.support.v7.widget.CardView) v.findViewById(R.id.homescreen_listview_artical_item_card);
+            android.support.v7.widget.CardView card = (android.support.v7.widget.CardView) view.findViewById(R.id.homescreen_listview_artical_item_card);
             if (card != null)
             {
                 card.setOnClickListener(new View.OnClickListener()
@@ -68,7 +67,7 @@ public class ArticleAdapter extends ArrayAdapter<Article>
                 });
             }
 
-            Button likeButton = (Button) v.findViewById(R.id.homescreen_listview_artical_item_like_button);
+            Button likeButton = (Button) view.findViewById(R.id.homescreen_listview_artical_item_like_button);
             if (likeButton != null)
             {
                 likeButton.setOnClickListener(new View.OnClickListener()
@@ -81,7 +80,7 @@ public class ArticleAdapter extends ArrayAdapter<Article>
                 });
             }
 
-            Button dislikeButton = (Button) v.findViewById(R.id.homescreen_listview_artical_item_dislike_button);
+            Button dislikeButton = (Button) view.findViewById(R.id.homescreen_listview_artical_item_dislike_button);
             if (dislikeButton != null)
             {
                 dislikeButton.setOnClickListener(new View.OnClickListener()
@@ -94,27 +93,40 @@ public class ArticleAdapter extends ArrayAdapter<Article>
                 });
             }
 
-            ImageView image = (ImageView) v.findViewById(R.id.homescreen_listview_artical_item_imageview);
+            Button commentButton = (Button) view.findViewById(R.id.homescreen_listview_artical_item_comment_button);
+            if (commentButton != null)
+            {
+                commentButton.setOnClickListener(new View.OnClickListener()
+                {
+                    @Override
+                    public void onClick(View v)
+                    {
+
+                    }
+                });
+            }
+
+            ImageView image = (ImageView) view.findViewById(R.id.homescreen_listview_artical_item_imageview);
             if (image != null)
             {
                 image.setImageDrawable(article.getImage());
             }
 
-            TextView title = (TextView) v.findViewById(R.id.homescreen_listview_artical_item_title);
+            TextView title = (TextView) view.findViewById(R.id.homescreen_listview_artical_item_title);
 
             if (title != null)
             {
                 title.setText(article.getTitle());
             }
 
-            TextView text = (TextView) v.findViewById(R.id.homescreen_listview_artical_item_text);
+            TextView text = (TextView) view.findViewById(R.id.homescreen_listview_artical_item_text);
 
             if (text != null)
             {
                 text.setText(article.getText());
             }
 
-            TextView views = (TextView) v.findViewById(R.id.homescreen_listview_artical_item_views);
+            TextView views = (TextView) view.findViewById(R.id.homescreen_listview_artical_item_views);
 
             if (views != null)
             {
@@ -122,7 +134,7 @@ public class ArticleAdapter extends ArrayAdapter<Article>
             }
         }
 
-        return v;
+        return view;
     }
 
 }
