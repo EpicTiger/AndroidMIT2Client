@@ -6,26 +6,22 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.rainer.mit2client.AddCommentFragment;
-import com.example.rainer.mit2client.ContentDetailFragment;
+import com.example.rainer.mit2client.ProfileFragment;
 import com.example.rainer.mit2client.R;
 
 import java.util.List;
 
-import Entities.Article;
+import Entities.User;
 import Util.AppSettings;
-import Util.Util;
 
-public class UserAdapter extends ArrayAdapter<Article>
+public class UserAdapter extends ArrayAdapter<User>
 {
     private final Context context;
-    private List<Article> objects;
+    private List<User> objects;
 
-    public UserAdapter(Context context, int resource, List<Article> objects)
+    public UserAdapter(Context context, int resource, List<User> objects)
     {
         super(context, resource, objects);
         this.context = context;
@@ -35,7 +31,6 @@ public class UserAdapter extends ArrayAdapter<Article>
     @Override
     public View getView(final int position, View convertView, ViewGroup parent)
     {
-
         View v = convertView;
 
         if (v == null)
@@ -43,15 +38,15 @@ public class UserAdapter extends ArrayAdapter<Article>
 
             LayoutInflater vi;
             vi = LayoutInflater.from(getContext());
-            v = vi.inflate(R.layout.content_home_screen_list_item, null);
+            v = vi.inflate(R.layout.content_users_screen_list_item, null);
         }
 
-        Article article = getItem(position);
+        User user = getItem(position);
 
-        if (article != null)
+        if (user != null)
         {
 
-            android.support.v7.widget.CardView card = (android.support.v7.widget.CardView) v.findViewById(R.id.homescreen_listview_artical_item_card);
+            android.support.v7.widget.CardView card = (android.support.v7.widget.CardView) v.findViewById(R.id.usersscreen_listview_item_card);
             if (card != null)
             {
                 card.setOnClickListener(new View.OnClickListener()
@@ -59,81 +54,30 @@ public class UserAdapter extends ArrayAdapter<Article>
                     @Override
                     public void onClick(View view)
                     {
-                        AppSettings.ArrayPosition = position;
+                        AppSettings.UserArrayPosition = position;
 
                         ((Activity) context)
-                                .getFragmentManager().beginTransaction().replace(R.id.fragmentParentViewGroup, new ContentDetailFragment())
+                                .getFragmentManager().beginTransaction().replace(R.id.fragmentParentViewGroup, new ProfileFragment())
                                 .addToBackStack(String.valueOf(R.string.nav_drawer_fragment_content_detail)).commit();
                     }
                 });
             }
 
-            Button likeButton = (Button) v.findViewById(R.id.homescreen_listview_artical_item_like_button);
-            if (likeButton != null)
+            TextView name = (TextView) v.findViewById(R.id.usersscreen_listview_user_item_name);
+
+            if (name != null)
             {
-                likeButton.setOnClickListener(new View.OnClickListener()
+                StringBuilder stringBuilder = new StringBuilder();
+                stringBuilder.append(user.getFirstname());
+                stringBuilder.append(" ");
+                if (user.getLastnameprefix() != "")
                 {
-                    @Override
-                    public void onClick(View view)
-                    {
-                        Util.ShowSnackbarLong(view, "Liked");
-                    }
-                });
-            }
+                    stringBuilder.append(user.getLastnameprefix());
+                    stringBuilder.append(" ");
+                }
+                stringBuilder.append(user.getLastname());
 
-            Button dislikeButton = (Button) v.findViewById(R.id.homescreen_listview_artical_item_dislike_button);
-            if (dislikeButton != null)
-            {
-                dislikeButton.setOnClickListener(new View.OnClickListener()
-                {
-                    @Override
-                    public void onClick(View view)
-                    {
-                        Util.ShowSnackbarLong(view, "Disliked");
-                    }
-                });
-            }
-
-            Button commentButton = (Button) v.findViewById(R.id.homescreen_listview_artical_item_comment_button);
-            if (commentButton != null)
-            {
-                commentButton.setOnClickListener(new View.OnClickListener()
-                {
-                    @Override
-                    public void onClick(View v)
-                    {
-                        ((Activity) context)
-                                .getFragmentManager().beginTransaction().replace(R.id.fragmentParentViewGroup, new AddCommentFragment())
-                                .addToBackStack(String.valueOf(R.string.nav_drawer_fragment_add_comment)).commit();
-                    }
-                });
-            }
-
-            ImageView image = (ImageView) v.findViewById(R.id.homescreen_listview_artical_item_imageview);
-            if (image != null)
-            {
-                image.setImageDrawable(article.getImage());
-            }
-
-            TextView title = (TextView) v.findViewById(R.id.homescreen_listview_artical_item_title);
-
-            if (title != null)
-            {
-                title.setText(article.getTitle());
-            }
-
-            TextView text = (TextView) v.findViewById(R.id.homescreen_listview_artical_item_text);
-
-            if (text != null)
-            {
-                text.setText(article.getText());
-            }
-
-            TextView views = (TextView) v.findViewById(R.id.homescreen_listview_artical_item_views);
-
-            if (views != null)
-            {
-                views.setText(article.getViews() + " views");
+                name.setText(stringBuilder.toString());
             }
         }
 

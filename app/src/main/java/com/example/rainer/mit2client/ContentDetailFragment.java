@@ -32,7 +32,7 @@ public class ContentDetailFragment extends Fragment
         TextView title = (TextView) view.findViewById(R.id.content_detail_title);
         TextView text = (TextView) view.findViewById(R.id.content_detail_text);
 
-        Article article = AppSettings.Articles.get(AppSettings.ArrayPosition);
+        Article article = AppSettings.Articles.get(AppSettings.ArticleArrayPosition);
 
         title.setText(article.getTitle());
         text.setText(article.getText());

@@ -1,13 +1,17 @@
 package com.example.rainer.mit2client;
 
+import android.app.SearchManager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
 import android.view.MenuItem;
 
 public class NavigationDrawer extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener
@@ -41,6 +45,34 @@ public class NavigationDrawer extends AppCompatActivity implements NavigationVie
         setSupportActionBar(toolbar);
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu, menu);
+        final SearchView searchView = (SearchView) MenuItemCompat.getActionView(menu.findItem(R.id.action_search));
+        SearchManager searchManager = (SearchManager) getSystemService(SEARCH_SERVICE);
+        searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener()
+        {
+            @Override
+            public boolean onQueryTextSubmit(String query)
+            {
+                getFragmentManager().beginTransaction()
+                        .replace(R.id.fragmentParentViewGroup, new UsersFragment())
+                                .commit();
+                searchView.setQuery("", false);
+                searchView.setIconified(true);
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText)
+            {
+                return false;
+            }
+        });
+        return true;
+    }
+
     protected void initializeNavigationDrawer(Toolbar toolbar)
     {
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -67,7 +99,7 @@ public class NavigationDrawer extends AppCompatActivity implements NavigationVie
         {
             getFragmentManager().beginTransaction()
                     .replace(R.id.fragmentParentViewGroup, new EditProfileFragment())
-                .commit();
+                    .commit();
         } else if (id == R.id.nav_create_new_post)
         {
             getFragmentManager().beginTransaction()

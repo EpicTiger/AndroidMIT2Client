@@ -19,7 +19,6 @@ import Util.AppSettings;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-//http://stackoverflow.com/questions/17258020/switching-between-android-navigation-drawer-image-and-up-caret-when-using-fragme
 public class HomeFragment extends Fragment
 {
 
@@ -84,14 +83,6 @@ public class HomeFragment extends Fragment
     {
         ArticleAdapter adapter = new ArticleAdapter(getActivity(), R.layout.content_home_screen, list);
         listView.setAdapter(adapter);
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener()
-        {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l)
-            {
-                Toast.makeText(getActivity(), "dawdwa", Toast.LENGTH_LONG).show();
-            }
-        });
     }
 
     private void createArticle(long id, String title, String text, int resource, int views)

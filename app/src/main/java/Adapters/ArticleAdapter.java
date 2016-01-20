@@ -59,7 +59,7 @@ public class ArticleAdapter extends ArrayAdapter<Article>
                     @Override
                     public void onClick(View view)
                     {
-                        AppSettings.ArrayPosition = position;
+                        AppSettings.ArticleArrayPosition = position;
 
                         ((Activity) context)
                                 .getFragmentManager().beginTransaction().replace(R.id.fragmentParentViewGroup, new ContentDetailFragment())
