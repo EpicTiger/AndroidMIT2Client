@@ -91,7 +91,7 @@
                     style="?android:attr/buttonBarButtonStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/Dislike"
+                    android:text="@string/Comment"
                     android:textAlignment="center"
                     android:textColor="@color/colorAccent" />
 

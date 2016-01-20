@@ -20,12 +20,12 @@ import Entities.Article;
 import Util.AppSettings;
 import Util.Util;
 
-public class ArticleAdapter extends ArrayAdapter<Article>
+public class UserAdapter extends ArrayAdapter<Article>
 {
     private final Context context;
     private List<Article> objects;
 
-    public ArticleAdapter(Context context, int resource, List<Article> objects)
+    public UserAdapter(Context context, int resource, List<Article> objects)
     {
         super(context, resource, objects);
         this.context = context;

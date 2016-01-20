@@ -45,5 +45,6 @@
 
     <string name="nav_drawer_fragment_content_detail">Content Detail</string>
     <string name="nav_drawer_fragment_add_comment">Add Comment</string>
+    <string name="Comment">Comment</string>
 
 </resources>

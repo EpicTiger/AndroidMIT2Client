@@ -33,20 +33,23 @@ public class EditProfileFragment extends Fragment
         View view = inflater.inflate(R.layout.content_profile_edit_page, container, false);
         ButterKnife.bind(this, view);
 
-        User.Fullname = "Wiel Kruiwagen";
-        User.Town = "Heerln";
+        User user = new User();
+        user.setFirstname("Wiel");
+        user.setLastnameprefix("van den");
+        user.setLastname("Kruiwagen");
+        user.setTown("Heerln");
 
-        initializeData();
+        initializeData(user);
         return view;
     }
 
-    private void initializeData()
+    private void initializeData(User user)
     {
-        textView_Fullname.setText(User.Fullname);
-        textView_Gender.setText(User.Gender);
-        textView_Nationality.setText(User.Nationality);
-        textView_DateOfBirth.setText(User.DateOfBirth);
-        textView_PoliticalPreference.setText(User.PoliticalPreference);
-        textView_Town.setText(User.Town);
+        textView_Fullname.setText(String.format("%s %s %s", user.getFirstname(), user.getLastnameprefix(), user.getLastname()));
+        textView_Gender.setText(user.getGender());
+        textView_Nationality.setText(user.getNationality());
+        textView_DateOfBirth.setText(user.getDateOfBirth());
+        textView_PoliticalPreference.setText(user.getPoliticalPreference());
+        textView_Town.setText(user.getTown());
     }
 }

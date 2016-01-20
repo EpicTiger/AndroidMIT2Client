@@ -87,9 +87,15 @@ public class NavigationDrawer extends AppCompatActivity implements NavigationVie
     public void onBackPressed()
     {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        int count = getFragmentManager().getBackStackEntryCount();
+
         if (drawer.isDrawerOpen(GravityCompat.START))
         {
             drawer.closeDrawer(GravityCompat.START);
+        }
+        if (count > 0)
+        {
+            getFragmentManager().popBackStack();
         } else
         {
             super.onBackPressed();
