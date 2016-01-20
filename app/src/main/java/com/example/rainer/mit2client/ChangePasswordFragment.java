@@ -2,15 +2,11 @@ package com.example.rainer.mit2client;
 
 import android.app.Fragment;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.design.widget.Snackbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
-
-import java.util.Objects;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -30,7 +26,6 @@ public class ChangePasswordFragment extends Fragment
 
     View view;
 
-    @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
@@ -60,13 +55,8 @@ public class ChangePasswordFragment extends Fragment
                     ((LoginActivity) getActivity()).executePasswordChange(email, oldPassword, newPassword);
                 } else
                 {
-                    Snackbar.make(view, "The new passwords don't match", Snackbar.LENGTH_SHORT).show();
+                    Util.Util.ShowSnackbarLong(view, "The new passwords don't match");
                 }
-
-//                ((LoginActivity) getActivity()).
-//                        getFragmentManager().beginTransaction()
-//                        .replace(R.id.fragmentParentViewGroup, new LoginFragment())
-//                        .commit();
             }
         });
     }

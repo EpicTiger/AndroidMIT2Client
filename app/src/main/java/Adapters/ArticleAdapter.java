@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.rainer.mit2client.AddCommentFragment;
 import com.example.rainer.mit2client.ContentDetailFragment;
 import com.example.rainer.mit2client.R;
 
@@ -17,6 +18,7 @@ import java.util.List;
 
 import Entities.Article;
 import Util.AppSettings;
+import Util.Util;
 
 public class ArticleAdapter extends ArrayAdapter<Article>
 {
@@ -63,7 +65,7 @@ public class ArticleAdapter extends ArrayAdapter<Article>
 
                         ((Activity) context)
                                 .getFragmentManager().beginTransaction().replace(R.id.fragmentParentViewGroup, new ContentDetailFragment())
-                                .addToBackStack("Content Detail").commit();
+                                .addToBackStack(String.valueOf(R.string.nav_drawer_fragment_content_detail)).commit();
                     }
                 });
             }
@@ -76,7 +78,7 @@ public class ArticleAdapter extends ArrayAdapter<Article>
                     @Override
                     public void onClick(View view)
                     {
-
+                        Util.ShowSnackbarLong(view, "Liked");
                     }
                 });
             }
@@ -89,12 +91,31 @@ public class ArticleAdapter extends ArrayAdapter<Article>
                     @Override
                     public void onClick(View view)
                     {
-
+                        Util.ShowSnackbarLong(view, "Disliked");
                     }
                 });
             }
 
+<<<<<<< HEAD
             ImageView image = (ImageView) v.findViewById(R.id.homescreen_listview_artical_item_imageview);
+=======
+            Button commentButton = (Button) view.findViewById(R.id.homescreen_listview_artical_item_comment_button);
+            if (commentButton != null)
+            {
+                commentButton.setOnClickListener(new View.OnClickListener()
+                {
+                    @Override
+                    public void onClick(View v)
+                    {
+                        ((Activity) context)
+                                .getFragmentManager().beginTransaction().replace(R.id.fragmentParentViewGroup, new AddCommentFragment())
+                                .addToBackStack(String.valueOf(R.string.nav_drawer_fragment_add_comment)).commit();
+                    }
+                });
+            }
+
+            ImageView image = (ImageView) view.findViewById(R.id.homescreen_listview_artical_item_imageview);
+>>>>>>> a2c6cfe00d0ef989d74ebfe5c9a3989352e1b839
             if (image != null)
             {
                 image.setImageDrawable(article.getImage());

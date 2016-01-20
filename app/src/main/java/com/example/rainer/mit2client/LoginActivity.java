@@ -2,7 +2,6 @@ package com.example.rainer.mit2client;
 
 import android.app.FragmentManager;
 import android.os.Bundle;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.Toast;

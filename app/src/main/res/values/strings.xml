@@ -43,4 +43,7 @@
         <item>Political user</item>
     </string-array>
 
+    <string name="nav_drawer_fragment_content_detail">Content Detail</string>
+    <string name="nav_drawer_fragment_add_comment">Add Comment</string>
+
 </resources>

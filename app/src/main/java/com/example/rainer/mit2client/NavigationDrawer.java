@@ -1,5 +1,9 @@
 package com.example.rainer.mit2client;
 
+<<<<<<< HEAD
+=======
+import android.app.SearchManager;
+>>>>>>> a2c6cfe00d0ef989d74ebfe5c9a3989352e1b839
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
@@ -9,13 +13,17 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+<<<<<<< HEAD
 
 import Entities.User;
+=======
+>>>>>>> a2c6cfe00d0ef989d74ebfe5c9a3989352e1b839
 
 public class NavigationDrawer extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener
 {
-
     private Toolbar toolbar;
+    public DrawerLayout drawer;
+    public ActionBarDrawerToggle mDrawerLayout;
 
     @Override
     public void onCreate(Bundle savedInstanceState)
@@ -34,8 +42,6 @@ public class NavigationDrawer extends AppCompatActivity implements NavigationVie
 
         initializeToolbar();
         initializeNavigationDrawer(toolbar);
-        setupTestUser();
-        //initializeData();
     }
 
     private void initializeToolbar()
@@ -44,24 +50,13 @@ public class NavigationDrawer extends AppCompatActivity implements NavigationVie
         setSupportActionBar(toolbar);
     }
 
-    private void setupTestUser()
-    {
-        User.Username = "Debuguser";
-        User.Fullname = "Debug User";
-        User.Gender = "Male";
-        User.PoliticalPreference = "N/A";
-        User.Nationality = "Dutch";
-        User.DateOfBirth = "1 - 1 - 1970";
-        User.Town = "Amsterdam";
-    }
-
     protected void initializeNavigationDrawer(Toolbar toolbar)
     {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+        drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        mDrawerLayout = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.setDrawerListener(toggle);
-        toggle.syncState();
+        drawer.setDrawerListener(mDrawerLayout);
+        mDrawerLayout.syncState();
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
@@ -80,16 +75,13 @@ public class NavigationDrawer extends AppCompatActivity implements NavigationVie
         } else if (id == R.id.nav_profile)
         {
             getFragmentManager().beginTransaction()
-                    .replace(R.id.fragmentParentViewGroup, new ProfileFragment())
-                    .commit();
+                    .replace(R.id.fragmentParentViewGroup, new EditProfileFragment())
+                .commit();
         } else if (id == R.id.nav_create_new_post)
         {
             getFragmentManager().beginTransaction()
                     .replace(R.id.fragmentParentViewGroup, new CreateNewPostFragment())
                     .commit();
-        } else if (id == R.id.nav_settings)
-        {
-
         } else if (id == R.id.nav_logout)
         {
             logOut();
