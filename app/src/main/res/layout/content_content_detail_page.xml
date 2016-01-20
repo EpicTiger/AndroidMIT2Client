@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/content_content_detail_container"
-    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -15,48 +14,17 @@
             android:orientation="vertical"
             android:padding="@dimen/activity_vertical_margin">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/content_detail_title"
-                    android:layout_width="match_parent"
-                    android:layout_height="120dp"
-                    android:layout_marginEnd="20dp"
-                    android:layout_weight="1"
-                    android:ellipsize="end"
-                    android:maxLines="4"
-                    android:singleLine="false"
-                    android:textColor="@color/black"
-                    android:textSize="20sp"
-                    android:textStyle="bold"/>
-
-                <ImageView
-                    android:id="@+id/content_detail_imageview"
-                    android:layout_width="120dp"
-                    android:layout_height="120dp"
-                    android:layout_weight="0"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/ic_no_image_available"/>
-
-            </LinearLayout>
-
             <TextView
-                android:id="@+id/content_detail_views"
+                android:id="@+id/content_detail_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp"
-                android:gravity="end"
-                android:paddingEnd="@dimen/card_margin"
-                />
+                android:textColor="@color/black"
+                android:textStyle="bold"/>
 
             <TextView
                 android:id="@+id/content_detail_text"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColor="@color/black"/>
+                android:layout_height="wrap_content" android:textColor="@color/black"/>
 
         </LinearLayout>
 

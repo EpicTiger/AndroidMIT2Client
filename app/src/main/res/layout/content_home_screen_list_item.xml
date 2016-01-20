@@ -30,7 +30,6 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:layout_marginEnd="10dp"
                     android:layout_weight="1"
                     android:orientation="vertical">
 
@@ -41,6 +40,7 @@
                         android:ellipsize="end"
                         android:maxLines="2"
                         android:singleLine="false"
+                        android:text="Test Title Test TitleTest TitleTest TitleTest TitleTest TitleTest TitleTest TitleTest TitleTest TitleTest TitleTest TitleTest TitleTest TitleTest TitleTest TitleTest TitleTest TitleTest TitleTest TitleTest TitleTest TitleTest TitleTest TitleTest TitleTest TitleTest TitleTest TitleTest TitleTest TitleTest TitleTest TitleTest TitleTest TitleTest TitleTest TitleTest TitleTest TitleTest TitleTest Title"
                         android:textColor="@color/black"
                         android:textStyle="bold" />
 
@@ -51,6 +51,7 @@
                         android:ellipsize="end"
                         android:maxLines="4"
                         android:singleLine="false"
+                        android:text="Test Text Test Text Test Text Test Text Test Text Test Text Test Text Test Text Test Text Test Text Test Text Test Text Test Text Test Text Test Text Test Text Test Text Test Text Test Text Test Text Test Text Test Text Test Text Test Text Test Text Test Text Test Text Test Text Test Text Test Text Test Text Test Text Test Text Test Text Test Text Test Text Test Text Test Text Test Text Test Text Test Text Test Text Test Text Test Text Test Text Test Text Test Text Test Text Test Text Test Text Test Text "
                         android:textColor="@color/black" />
                 </LinearLayout>
 
@@ -59,7 +60,7 @@
                     android:layout_width="80dp"
                     android:layout_height="80dp"
                     android:scaleType="centerCrop"
-                    android:src="@drawable/ic_no_image_available" />
+                    android:src="@drawable/claimt_betrokkenheid_bij_schietpartij_californie" />
             </LinearLayout>
 
             <LinearLayout
@@ -82,15 +83,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/Dislike"
-                    android:textAlignment="center"
-                    android:textColor="@color/colorAccent" />
-
-                <Button
-                    android:id="@+id/homescreen_listview_artical_item_comment_button"
-                    style="?android:attr/buttonBarButtonStyle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/Comment"
                     android:textAlignment="center"
                     android:textColor="@color/colorAccent" />
 

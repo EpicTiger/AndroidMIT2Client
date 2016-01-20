@@ -1,7 +1,6 @@
 package com.example.rainer.mit2client;
 
 import android.app.FragmentManager;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -100,10 +99,7 @@ public class LoginActivity extends AppCompatActivity implements FragmentManager.
     {
         if (result != null)
         {
-            if (result.isLoginSuccessful)
-                gotoHomeSreen();
-            else
-                Toast.makeText(this, "Incorrect credentials", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Login Success", Toast.LENGTH_SHORT).show();
         } else
         {
             Toast.makeText(this, "Login Error", Toast.LENGTH_SHORT).show();
@@ -144,12 +140,6 @@ public class LoginActivity extends AppCompatActivity implements FragmentManager.
         {
             Toast.makeText(this, "Password Change Error", Toast.LENGTH_SHORT).show();
         }
-    }
-
-    private void gotoHomeSreen()
-    {
-        Intent intent = new Intent(this, NavigationDrawer.class);
-        startActivity(intent);
     }
 }
 

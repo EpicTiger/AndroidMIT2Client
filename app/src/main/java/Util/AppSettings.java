@@ -10,7 +10,7 @@ public class AppSettings
 
     public static List<Article> Articles;
 
-    public static String IpAdress = "10.77.143.42";
+    public static String IpAdress = "192.168.178.17";
 
     public static int Port = 9090;
 }

@@ -19,6 +19,7 @@ import Util.AppSettings;
 //http://stackoverflow.com/questions/17258020/switching-between-android-navigation-drawer-image-and-up-caret-when-using-fragme
 public class HomeFragment extends Fragment
 {
+
     private List<Article> articles;
     private ListView listView;
 
@@ -66,16 +67,7 @@ public class HomeFragment extends Fragment
                 "\n" +
                 "De beschuldigingen richting Taylor komen van Benny Alon, een Israëlische oud-profvoetballer en eigenaar van marketingbureau JB Sports Marketing. Hij heeft onderzoek gedaan naar de illegale kaartverkoop voor het WK.\n" +
                 "\n" +
-                "Taylor heeft per mail laten weten ''geen concrete wetenschap te hebben van de feiten die aan de beschuldigingen ten grondslag liggen", R.drawable.ic_no_image_available, 5156);
-
-        createArticle(5, "Drie Russen aangehouden in verband met aanslag Istanbul", "De Turkse autoriteiten hebben in verband met de aanslag dinsdag in Istanbul drie Russen aangehouden. Het trio zou banden hebben met Islamitische Staat.\n" +
-                "Dat meldt het Turkse persagentschap Dogan. De Russen zouden zijn aangehouden in de badplaats Antalya. Het Russische consulaat heeft de aanhouding bevestigd.\n" +
-                "\n" +
-                "De verdachten zouden contact hebben met strijders van IS en de terreurbeweging logistiek hebben ondersteund, meldt AP op basis van het Turkse persbureau Anadolu.\n" +
-                "\n" +
-                "Door de zelfmoordaanslag in het centrum van Istanbul kwamen dinsdag tien mensen om het leven, onder wie acht Duitse toeristen. Vijftien anderen raakten gewond. De dader zou een 28-jarige Syriër zijn, lid van IS.\n" +
-                "\n" +
-                "Twee Duitse gewonden zijn er na de aanslag erg slecht aan toe. Elf gewonden liggen nog in ziekenhuizen, onder wie negen Duitsers. De andere twee zijn een Noor en een vrouw uit Peru. ", R.drawable.ic_no_image_available, 20000);
+                "Taylor heeft per mail laten weten ''geen concrete wetenschap te hebben van de feiten die aan de beschuldigingen ten grondslag liggen", R.drawable.ook_nederlandse_sportmarketeer_schuldig_corruptie_binnen_fifa, 5156);
         AppSettings.Articles = articles;
         return articles;
     }
