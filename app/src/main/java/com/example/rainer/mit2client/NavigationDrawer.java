@@ -1,9 +1,5 @@
 package com.example.rainer.mit2client;
 
-<<<<<<< HEAD
-=======
-import android.app.SearchManager;
->>>>>>> a2c6cfe00d0ef989d74ebfe5c9a3989352e1b839
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
@@ -13,11 +9,6 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
-<<<<<<< HEAD
-
-import Entities.User;
-=======
->>>>>>> a2c6cfe00d0ef989d74ebfe5c9a3989352e1b839
 
 public class NavigationDrawer extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener
 {

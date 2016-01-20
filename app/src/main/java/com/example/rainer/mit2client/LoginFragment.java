@@ -51,11 +51,8 @@ public class LoginFragment extends Fragment
 //
 //                ((LoginActivity)getActivity()).executeLogin(email, password);
 
-<<<<<<< HEAD
-=======
                 //((LoginActivity)getActivity()).executeLogin(email, password);
 
->>>>>>> a2c6cfe00d0ef989d74ebfe5c9a3989352e1b839
                 gotoHomeSreen();
             }
         });

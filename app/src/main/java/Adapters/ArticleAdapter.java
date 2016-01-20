@@ -96,10 +96,7 @@ public class ArticleAdapter extends ArrayAdapter<Article>
                 });
             }
 
-<<<<<<< HEAD
-            ImageView image = (ImageView) v.findViewById(R.id.homescreen_listview_artical_item_imageview);
-=======
-            Button commentButton = (Button) view.findViewById(R.id.homescreen_listview_artical_item_comment_button);
+            Button commentButton = (Button) v.findViewById(R.id.home);
             if (commentButton != null)
             {
                 commentButton.setOnClickListener(new View.OnClickListener()
@@ -114,8 +111,7 @@ public class ArticleAdapter extends ArrayAdapter<Article>
                 });
             }
 
-            ImageView image = (ImageView) view.findViewById(R.id.homescreen_listview_artical_item_imageview);
->>>>>>> a2c6cfe00d0ef989d74ebfe5c9a3989352e1b839
+            ImageView image = (ImageView) v.findViewById(R.id.homescreen_listview_artical_item_imageview);
             if (image != null)
             {
                 image.setImageDrawable(article.getImage());

@@ -86,6 +86,15 @@
                     android:textAlignment="center"
                     android:textColor="@color/colorAccent" />
 
+                <Button
+                    android:id="@+id/homescreen_listview_artical_item_comment_button"
+                    style="?android:attr/buttonBarButtonStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/Dislike"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorAccent" />
+
                 <TextView
                     android:id="@+id/homescreen_listview_artical_item_views"
                     android:layout_width="match_parent"
