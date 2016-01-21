@@ -14,7 +14,18 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
-public class NavigationDrawer extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener
+import AsyncClasses.CommentThriftClass;
+import AsyncClasses.CreateContentThriftClass;
+import AsyncClasses.NavigationDrawerAsyncResponse;
+import AsyncClasses.RatingThriftClass;
+import Politics247Generated.CommentData;
+import Politics247Generated.CommentResult;
+import Politics247Generated.CreateContentData;
+import Politics247Generated.CreateContentResult;
+import Politics247Generated.RateData;
+import Politics247Generated.RateResult;
+
+public class NavigationDrawer extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, NavigationDrawerAsyncResponse
 {
     private Toolbar toolbar;
     public DrawerLayout drawer;
@@ -46,7 +57,8 @@ public class NavigationDrawer extends AppCompatActivity implements NavigationVie
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
+    public boolean onCreateOptionsMenu(Menu menu)
+    {
         getMenuInflater().inflate(R.menu.menu, menu);
         final SearchView searchView = (SearchView) MenuItemCompat.getActionView(menu.findItem(R.id.action_search));
         SearchManager searchManager = (SearchManager) getSystemService(SEARCH_SERVICE);
@@ -58,7 +70,7 @@ public class NavigationDrawer extends AppCompatActivity implements NavigationVie
             {
                 getFragmentManager().beginTransaction()
                         .replace(R.id.fragmentParentViewGroup, new UsersFragment())
-                                .commit();
+                        .commit();
                 searchView.setQuery("", false);
                 searchView.setIconified(true);
                 return false;
@@ -99,6 +111,7 @@ public class NavigationDrawer extends AppCompatActivity implements NavigationVie
         {
             getFragmentManager().beginTransaction()
                     .replace(R.id.fragmentParentViewGroup, new EditProfileFragment())
+                    .addToBackStack(getString(R.string.nav_drawer_fragment_own_profile))
                     .commit();
         } else if (id == R.id.nav_create_new_post)
         {
@@ -113,6 +126,42 @@ public class NavigationDrawer extends AppCompatActivity implements NavigationVie
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    public void executeAddComment(int postId, int userId, String commentText)
+    {
+        CommentData commentData = new CommentData();
+        commentData.setCommentText(commentText);
+        commentData.setPostID(postId);
+        commentData.setUserID(userId);
+
+        CommentThriftClass commentThriftClass = new CommentThriftClass();
+        commentThriftClass.delegate = this;
+        commentThriftClass.execute(commentData);
+    }
+
+    public void executeAddRating(int postId, int userId, double rating)
+    {
+        RateData rateData = new RateData();
+        rateData.setPostID(postId);
+        rateData.setUserID(userId);
+        rateData.setRatingValue(rating);
+
+        RatingThriftClass commentThriftClass = new RatingThriftClass();
+        commentThriftClass.delegate = this;
+        commentThriftClass.execute(rateData);
+    }
+
+    public void executeCreateContent(int userId, String title, String text)
+    {
+        CreateContentData createContentData = new CreateContentData();
+        createContentData.setUserID(userId);
+        createContentData.setPostTitle(title);
+        createContentData.setPostText(text);
+
+        CreateContentThriftClass createContentThriftClass = new CreateContentThriftClass();
+        createContentThriftClass.delegate = this;
+        createContentThriftClass.execute(createContentData);
     }
 
     @Override
@@ -140,4 +189,39 @@ public class NavigationDrawer extends AppCompatActivity implements NavigationVie
         startActivity(intent);
     }
 
+    @Override
+    public void commentProcessFinish(CommentResult result)
+    {
+        if (result != null)
+        {
+            Util.Util.ShowToastLong(this, "Comment Added");
+        } else
+        {
+            Util.Util.ShowToastLong(this, "Could not add comment.");
+        }
+    }
+
+    @Override
+    public void rateProcessFinish(RateResult result)
+    {
+        if (result != null)
+        {
+            Util.Util.ShowToastLong(this, "Rating Added");
+        } else
+        {
+            Util.Util.ShowToastLong(this, "Could not add rating.");
+        }
+    }
+
+    @Override
+    public void createContentProcessFinish(CreateContentResult result)
+    {
+        if (result != null)
+        {
+            Util.Util.ShowToastLong(this, "Content Added");
+        } else
+        {
+            Util.Util.ShowToastLong(this, "Could not add content.");
+        }
+    }
 }

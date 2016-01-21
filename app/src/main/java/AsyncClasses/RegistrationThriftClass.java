@@ -1,7 +1,6 @@
 package AsyncClasses;
 
 import android.os.AsyncTask;
-import android.util.Log;
 
 import org.apache.thrift.protocol.TBinaryProtocol;
 import org.apache.thrift.protocol.TProtocol;
@@ -15,7 +14,7 @@ import Util.AppSettings;
 
 public class RegistrationThriftClass extends AsyncTask<RegistrationData, Integer, RegistrationResult>
 {
-    public AsyncResponse delegate = null;
+    public LoginAsyncResponse delegate = null;
 
     @Override
     protected RegistrationResult doInBackground(RegistrationData... registrationDatas)

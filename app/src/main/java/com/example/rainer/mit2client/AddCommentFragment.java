@@ -41,7 +41,14 @@ public class AddCommentFragment extends Fragment
             @Override
             public void onClick(View view)
             {
-                Util.Util.ShowSnackbarLong(view, "Comment Added");
+                String comment = String.valueOf(textView_CommentText.getText());
+                if (!comment.isEmpty())
+                {
+                    ((NavigationDrawer) getActivity()).executeAddComment(0, 0, comment);
+                } else
+                {
+                    Util.Util.ShowSnackbarShort(container, "Comment can not be empty");
+                }
             }
         });
     }

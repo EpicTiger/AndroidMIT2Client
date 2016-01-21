@@ -7,19 +7,19 @@ import org.apache.thrift.protocol.TProtocol;
 import org.apache.thrift.transport.TSocket;
 import org.apache.thrift.transport.TTransport;
 
-import Politics247Generated.AuthenticationClientService;
-import Politics247Generated.LoginData;
-import Politics247Generated.LoginResult;
+import Politics247Generated.ContentManagementClientService;
+import Politics247Generated.RateData;
+import Politics247Generated.RateResult;
 import Util.AppSettings;
 
-public class LoginThriftClass extends AsyncTask<LoginData, Integer, LoginResult>
+public class RatingThriftClass extends AsyncTask<RateData, Integer, RateResult>
 {
-    public LoginAsyncResponse delegate = null;
+    public NavigationDrawerAsyncResponse delegate = null;
 
     @Override
-    protected LoginResult doInBackground(LoginData... loginDatas)
+    protected RateResult doInBackground(RateData... RateDatas)
     {
-        LoginResult result = null;
+        RateResult result = null;
         try
         {
             TSocket tsocket = new TSocket(AppSettings.IpAdress, AppSettings.Port);
@@ -27,9 +27,9 @@ public class LoginThriftClass extends AsyncTask<LoginData, Integer, LoginResult>
             transport.open();
 
             TProtocol protocol = new TBinaryProtocol(transport);
-            AuthenticationClientService.Client client = new AuthenticationClientService.Client(protocol);
+            ContentManagementClientService.Client contentManagementClientService = new ContentManagementClientService.Client(protocol);
 
-            result = client.Login(loginDatas[0]);
+            result = contentManagementClientService.Rate(RateDatas[0]);
 
             transport.close();
         } catch (Exception x)
@@ -44,8 +44,8 @@ public class LoginThriftClass extends AsyncTask<LoginData, Integer, LoginResult>
 
     }
 
-    protected void onPostExecute(LoginResult result)
+    protected void onPostExecute(RateResult result)
     {
-        delegate.loginProcessFinish(result);
+        delegate.rateProcessFinish(result);
     }
 }

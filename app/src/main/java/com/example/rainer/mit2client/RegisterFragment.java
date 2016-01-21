@@ -10,7 +10,7 @@ import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import Politics247Generated.UserType;
+import Politics247Generated.ThriftUserType;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
@@ -49,7 +49,7 @@ public class RegisterFragment extends Fragment
             {
                 String email = (textView_Email.getText().toString().trim());
                 String password = (textView_Password.getText().toString().trim());
-                UserType userType = UserType.findByValue(spinner_UserType.getSelectedItemPosition());
+                ThriftUserType userType = ThriftUserType.findByValue(spinner_UserType.getSelectedItemPosition());
 
                 ((LoginActivity) getActivity()).executeRegistration(email, password, userType);
             }

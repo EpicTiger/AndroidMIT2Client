@@ -7,19 +7,19 @@ import org.apache.thrift.protocol.TProtocol;
 import org.apache.thrift.transport.TSocket;
 import org.apache.thrift.transport.TTransport;
 
-import Politics247Generated.AuthenticationClientService;
-import Politics247Generated.LoginData;
-import Politics247Generated.LoginResult;
+import Politics247Generated.CommentData;
+import Politics247Generated.CommentResult;
+import Politics247Generated.ContentManagementClientService;
 import Util.AppSettings;
 
-public class LoginThriftClass extends AsyncTask<LoginData, Integer, LoginResult>
+public class CommentThriftClass extends AsyncTask<CommentData, Integer, CommentResult>
 {
-    public LoginAsyncResponse delegate = null;
+    public NavigationDrawerAsyncResponse delegate = null;
 
     @Override
-    protected LoginResult doInBackground(LoginData... loginDatas)
+    protected CommentResult doInBackground(CommentData... CommentDatas)
     {
-        LoginResult result = null;
+        CommentResult result = null;
         try
         {
             TSocket tsocket = new TSocket(AppSettings.IpAdress, AppSettings.Port);
@@ -27,9 +27,9 @@ public class LoginThriftClass extends AsyncTask<LoginData, Integer, LoginResult>
             transport.open();
 
             TProtocol protocol = new TBinaryProtocol(transport);
-            AuthenticationClientService.Client client = new AuthenticationClientService.Client(protocol);
+            ContentManagementClientService.Client contentManagementClientService = new ContentManagementClientService.Client(protocol);
 
-            result = client.Login(loginDatas[0]);
+            result = contentManagementClientService.Comment(CommentDatas[0]);
 
             transport.close();
         } catch (Exception x)
@@ -44,8 +44,8 @@ public class LoginThriftClass extends AsyncTask<LoginData, Integer, LoginResult>
 
     }
 
-    protected void onPostExecute(LoginResult result)
+    protected void onPostExecute(CommentResult result)
     {
-        delegate.loginProcessFinish(result);
+        delegate.commentProcessFinish(result);
     }
 }

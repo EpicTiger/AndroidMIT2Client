@@ -1,7 +1,6 @@
 package AsyncClasses;
 
 import android.os.AsyncTask;
-import android.util.Log;
 
 import org.apache.thrift.protocol.TBinaryProtocol;
 import org.apache.thrift.protocol.TProtocol;
@@ -9,14 +8,13 @@ import org.apache.thrift.transport.TSocket;
 import org.apache.thrift.transport.TTransport;
 
 import Politics247Generated.AuthenticationClientService;
-import Politics247Generated.LoginResult;
 import Politics247Generated.PasswordChangeData;
 import Politics247Generated.PasswordChangeResult;
 import Util.AppSettings;
 
 public class PasswordChangeThriftClass extends AsyncTask<PasswordChangeData, Integer, PasswordChangeResult>
 {
-    public AsyncResponse delegate = null;
+    public LoginAsyncResponse delegate = null;
 
     @Override
     protected PasswordChangeResult doInBackground(PasswordChangeData... passwordChangeDatas)

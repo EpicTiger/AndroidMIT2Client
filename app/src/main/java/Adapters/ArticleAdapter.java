@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.example.rainer.mit2client.AddCommentFragment;
 import com.example.rainer.mit2client.ContentDetailFragment;
+import com.example.rainer.mit2client.NavigationDrawer;
 import com.example.rainer.mit2client.R;
 
 import java.util.List;
@@ -76,7 +77,7 @@ public class ArticleAdapter extends ArrayAdapter<Article>
                     @Override
                     public void onClick(View view)
                     {
-                        Util.ShowSnackbarLong(view, "Liked");
+                        ((NavigationDrawer)getContext()).executeAddRating(0,0,1.0);
                     }
                 });
             }
@@ -89,7 +90,7 @@ public class ArticleAdapter extends ArrayAdapter<Article>
                     @Override
                     public void onClick(View view)
                     {
-                        Util.ShowSnackbarLong(view, "Disliked");
+                        ((NavigationDrawer)getContext()).executeAddRating(0, 0, 0.0);
                     }
                 });
             }

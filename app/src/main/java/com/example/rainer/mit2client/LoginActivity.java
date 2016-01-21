@@ -6,7 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.Toast;
 
-import AsyncClasses.AsyncResponse;
+import AsyncClasses.LoginAsyncResponse;
 import AsyncClasses.LoginThriftClass;
 import AsyncClasses.PasswordChangeThriftClass;
 import AsyncClasses.RegistrationThriftClass;
@@ -16,10 +16,10 @@ import Politics247Generated.PasswordChangeData;
 import Politics247Generated.PasswordChangeResult;
 import Politics247Generated.RegistrationData;
 import Politics247Generated.RegistrationResult;
-import Politics247Generated.UserType;
+import Politics247Generated.ThriftUserType;
 
 
-public class LoginActivity extends AppCompatActivity implements FragmentManager.OnBackStackChangedListener, AsyncResponse
+public class LoginActivity extends AppCompatActivity implements FragmentManager.OnBackStackChangedListener, LoginAsyncResponse
 {
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -49,7 +49,7 @@ public class LoginActivity extends AppCompatActivity implements FragmentManager.
         loginThriftClass.execute(loginData);
     }
 
-    public void executeRegistration(String email, String password, UserType userType)
+    public void executeRegistration(String email, String password, ThriftUserType userType)
     {
         RegistrationData registrationData = new RegistrationData();
         registrationData.setEmailAddress(email);

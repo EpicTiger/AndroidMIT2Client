@@ -34,7 +34,7 @@
                         android:id="@+id/create_add_comment_text"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:hint="@string/Text"
+                        android:hint="@string/Comment"
                         android:maxLength="500"
                         android:singleLine="false"
                         android:textColorHint="@color/colorAccent" />

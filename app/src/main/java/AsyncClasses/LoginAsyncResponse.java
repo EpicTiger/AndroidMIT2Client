@@ -9,7 +9,7 @@ import Politics247Generated.RegistrationResult;
 /**
  * Created by Rainer on 9-1-2016.
  */
-public interface AsyncResponse
+public interface LoginAsyncResponse
 {
     void loginProcessFinish(LoginResult result);
 
