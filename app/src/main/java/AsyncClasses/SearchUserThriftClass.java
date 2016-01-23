@@ -7,19 +7,18 @@ import org.apache.thrift.protocol.TProtocol;
 import org.apache.thrift.transport.TSocket;
 import org.apache.thrift.transport.TTransport;
 
-import Politics247Generated.ContentManagementClientService;
-import Politics247Generated.CreateContentData;
-import Politics247Generated.CreateContentResult;
+import Politics247Generated.UserManagementClientService;
+import Politics247Generated.UserSearchResult;
 import Util.AppSettings;
 
-public class CreateContentThriftClass extends AsyncTask<CreateContentData, Integer, CreateContentResult>
+public class SearchUserThriftClass extends AsyncTask<String, Integer, UserSearchResult>
 {
     public NavigationDrawerAsyncResponse delegate = null;
 
     @Override
-    protected CreateContentResult doInBackground(CreateContentData... CreateContentDatas)
+    protected UserSearchResult doInBackground(String... query)
     {
-        CreateContentResult result = null;
+        UserSearchResult result = null;
         try
         {
             TSocket tsocket = new TSocket(AppSettings.IpAddress, AppSettings.Port);
@@ -27,9 +26,9 @@ public class CreateContentThriftClass extends AsyncTask<CreateContentData, Integ
             transport.open();
 
             TProtocol protocol = new TBinaryProtocol(transport);
-            ContentManagementClientService.Client contentManagementClientService = new ContentManagementClientService.Client(protocol);
+            UserManagementClientService.Client client = new UserManagementClientService.Client(protocol);
 
-            result = contentManagementClientService.CreateContent(CreateContentDatas[0]);
+            result = client.SearchUser(query[0]);
 
             transport.close();
         } catch (Exception x)
@@ -44,8 +43,8 @@ public class CreateContentThriftClass extends AsyncTask<CreateContentData, Integ
 
     }
 
-    protected void onPostExecute(CreateContentResult result)
+    protected void onPostExecute(UserSearchResult result)
     {
-        delegate.createContentProcessFinish(result);
+        delegate.searchProcessFinish(result);
     }
 }

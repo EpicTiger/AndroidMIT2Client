@@ -18,12 +18,20 @@ import AsyncClasses.CommentThriftClass;
 import AsyncClasses.CreateContentThriftClass;
 import AsyncClasses.NavigationDrawerAsyncResponse;
 import AsyncClasses.RatingThriftClass;
+import AsyncClasses.SearchUserThriftClass;
+import AsyncClasses.SubcriberThriftClass;
+import AsyncClasses.ViewUserProfileThriftClass;
 import Politics247Generated.CommentData;
 import Politics247Generated.CommentResult;
 import Politics247Generated.CreateContentData;
 import Politics247Generated.CreateContentResult;
 import Politics247Generated.RateData;
 import Politics247Generated.RateResult;
+import Politics247Generated.SubscriptionData;
+import Politics247Generated.SubscriptionResult;
+import Politics247Generated.UserManagementClientService;
+import Politics247Generated.UserProfileResult;
+import Politics247Generated.UserSearchResult;
 
 public class NavigationDrawer extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, NavigationDrawerAsyncResponse
 {
@@ -164,6 +172,31 @@ public class NavigationDrawer extends AppCompatActivity implements NavigationVie
         createContentThriftClass.execute(createContentData);
     }
 
+    public void executeAddSubscription(int subscriberID, int subscriptionID)
+    {
+        SubscriptionData subscriptionData = new SubscriptionData();
+        subscriptionData.setSubscriberID(subscriberID);
+        subscriptionData.setSubscriptionID(subscriptionID);
+
+        SubcriberThriftClass subcriberThriftClass = new SubcriberThriftClass();
+        subcriberThriftClass.delegate = this;
+        subcriberThriftClass.execute(subscriptionData);
+    }
+
+    public void executeViewUserProfile(Integer userId)
+    {
+        ViewUserProfileThriftClass viewUserProfileThriftClass = new ViewUserProfileThriftClass();
+        viewUserProfileThriftClass.delegate = this;
+        viewUserProfileThriftClass.execute(userId);
+    }
+
+    public void executeSearchUser(String searchQuery)
+    {
+        SearchUserThriftClass searchUserThriftClass = new SearchUserThriftClass();
+        searchUserThriftClass.delegate = this;
+        searchUserThriftClass.execute(searchQuery);
+    }
+
     @Override
     public void onBackPressed()
     {
@@ -222,6 +255,42 @@ public class NavigationDrawer extends AppCompatActivity implements NavigationVie
         } else
         {
             Util.Util.ShowToastLong(this, "Could not add content.");
+        }
+    }
+
+    @Override
+    public void subcriberProcessFinish(SubscriptionResult result)
+    {
+        if (result != null)
+        {
+            Util.Util.ShowToastLong(this, "Subscription Added");
+        } else
+        {
+            Util.Util.ShowToastLong(this, "Could not add subscription.");
+        }
+    }
+
+    @Override
+    public void searchProcessFinish(UserSearchResult result)
+    {
+        if (result != null)
+        {
+
+        } else
+        {
+            Util.Util.ShowToastLong(this, "No users found.");
+        }
+    }
+
+    @Override
+    public void viewUserProfileProcessFinish(UserProfileResult result)
+    {
+        if (result != null)
+        {
+
+        } else
+        {
+            Util.Util.ShowToastLong(this, "No users information found.");
         }
     }
 }

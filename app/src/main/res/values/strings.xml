@@ -47,5 +47,6 @@
     <string name="nav_drawer_fragment_add_comment">Add Comment</string>
     <string name="Comment">Comment</string>
     <string name="nav_drawer_fragment_own_profile">Profile Edit Screen</string>
+    <string name="Subscribe">Subscribe</string>
 
 </resources>

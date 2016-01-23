@@ -7,19 +7,19 @@ import org.apache.thrift.protocol.TProtocol;
 import org.apache.thrift.transport.TSocket;
 import org.apache.thrift.transport.TTransport;
 
-import Politics247Generated.ContentManagementClientService;
-import Politics247Generated.CreateContentData;
-import Politics247Generated.CreateContentResult;
+import Politics247Generated.SubscriptionData;
+import Politics247Generated.SubscriptionResult;
+import Politics247Generated.SubscriptionUserClientService;
 import Util.AppSettings;
 
-public class CreateContentThriftClass extends AsyncTask<CreateContentData, Integer, CreateContentResult>
+public class SubcriberThriftClass extends AsyncTask<SubscriptionData, Integer, SubscriptionResult>
 {
     public NavigationDrawerAsyncResponse delegate = null;
 
     @Override
-    protected CreateContentResult doInBackground(CreateContentData... CreateContentDatas)
+    protected SubscriptionResult doInBackground(SubscriptionData... SubscriptionDatas)
     {
-        CreateContentResult result = null;
+        SubscriptionResult result = null;
         try
         {
             TSocket tsocket = new TSocket(AppSettings.IpAddress, AppSettings.Port);
@@ -27,9 +27,9 @@ public class CreateContentThriftClass extends AsyncTask<CreateContentData, Integ
             transport.open();
 
             TProtocol protocol = new TBinaryProtocol(transport);
-            ContentManagementClientService.Client contentManagementClientService = new ContentManagementClientService.Client(protocol);
+            SubscriptionUserClientService.Client client = new SubscriptionUserClientService.Client(protocol);
 
-            result = contentManagementClientService.CreateContent(CreateContentDatas[0]);
+            result = client.Subscribe(SubscriptionDatas[0]);
 
             transport.close();
         } catch (Exception x)
@@ -44,8 +44,8 @@ public class CreateContentThriftClass extends AsyncTask<CreateContentData, Integ
 
     }
 
-    protected void onPostExecute(CreateContentResult result)
+    protected void onPostExecute(SubscriptionResult result)
     {
-        delegate.createContentProcessFinish(result);
+        delegate.subcriberProcessFinish(result);
     }
 }

@@ -22,7 +22,7 @@ public class CommentThriftClass extends AsyncTask<CommentData, Integer, CommentR
         CommentResult result = null;
         try
         {
-            TSocket tsocket = new TSocket(AppSettings.IpAdress, AppSettings.Port);
+            TSocket tsocket = new TSocket(AppSettings.IpAddress, AppSettings.Port);
             TTransport transport = tsocket;
             transport.open();
 

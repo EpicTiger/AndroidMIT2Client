@@ -2,14 +2,15 @@ package Entities;
 
 public class User
 {
-    public String Firstname;
-    public String Lastnameprefix;
-    public String Lastname;
-    public String Gender;
-    public String Nationality;
-    public String DateOfBirth;
-    public String PoliticalPreference;
-    public String Town;
+    private int UserId;
+    private String Firstname;
+    private String Lastnameprefix;
+    private String Lastname;
+    private String Gender;
+    private String Nationality;
+    private String DateOfBirth;
+    private String PoliticalPreference;
+    private String Town;
 
     public String getTown()
     {
@@ -89,6 +90,16 @@ public class User
     public void setPoliticalPreference(String politicalPreference)
     {
         PoliticalPreference = politicalPreference;
+    }
+
+    public int getUserId()
+    {
+        return UserId;
+    }
+
+    public void setUserId(int userId)
+    {
+        UserId = userId;
     }
 }
 

@@ -5,9 +5,11 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import Entities.User;
+import Util.AppSettings;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
@@ -25,6 +27,8 @@ public class ProfileFragment extends Fragment
     TextView textView_PoliticalPreference;
     @Bind(R.id.profilescreen_textview_town)
     TextView textView_Town;
+    @Bind(R.id.profilescreen_subcribe_button)
+    Button button_Subscribe;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
@@ -33,13 +37,16 @@ public class ProfileFragment extends Fragment
         View view = inflater.inflate(R.layout.content_profile_page, container, false);
         ButterKnife.bind(this, view);
 
+
         User user = new User();
+        user.setUserId(1);
         user.setFirstname("Wiel");
         user.setLastnameprefix("van den");
         user.setLastname("Kruiwagen");
         user.setTown("Heerln");
 
         initializeData(user);
+
         return view;
     }
 
