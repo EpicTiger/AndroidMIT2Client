@@ -1,14 +1,10 @@
 package com.example.rainer.mit2client;
 
-import android.app.Fragment;
 import android.os.Bundle;
-import android.support.design.widget.CoordinatorLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,20 +15,17 @@ import Util.AppSettings;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-public class HomeFragment extends Fragment
+public class HomeFragment extends BaseFragment
 {
 
     private List<Article> articles;
     @Bind(R.id.homescreen_listview_article)
     ListView listView;
-    @Bind(R.id.container)
-    public CoordinatorLayout container;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
-        super.onCreateView(inflater, container, savedInstanceState);
-        View view = inflater.inflate(R.layout.content_home_screen, container, false);
+        super.onCreateView(inflater, container, savedInstanceState, R.layout.content_home_screen);
         ButterKnife.bind(this, view);
 
         List<Article> list = inititalizeItemList();

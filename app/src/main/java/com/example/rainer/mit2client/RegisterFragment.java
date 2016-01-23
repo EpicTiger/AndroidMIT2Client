@@ -1,6 +1,5 @@
 package com.example.rainer.mit2client;
 
-import android.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,10 +10,11 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import Politics247Generated.ThriftUserType;
+import Util.AppSettings;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-public class RegisterFragment extends Fragment
+public class RegisterFragment extends BaseFragment
 {
     @Bind(R.id.registerscreen_email_address)
     TextView textView_Email;
@@ -25,13 +25,10 @@ public class RegisterFragment extends Fragment
     @Bind(R.id.registerscreen_button_register)
     Button button_Register;
 
-    View view;
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
-        super.onCreateView(inflater, container, savedInstanceState);
-        view = inflater.inflate(R.layout.content_register_screen, container, false);
+        super.onCreateView(inflater, container, savedInstanceState, R.layout.content_register_screen);
         ButterKnife.bind(this, view);
 
         initializeButtons();
@@ -47,12 +44,18 @@ public class RegisterFragment extends Fragment
             @Override
             public void onClick(View view)
             {
-                String email = (textView_Email.getText().toString().trim());
-                String password = (textView_Password.getText().toString().trim());
-                ThriftUserType userType = ThriftUserType.findByValue(spinner_UserType.getSelectedItemPosition());
+                if (AppSettings.UseServers)
+                {
+                    String email = (textView_Email.getText().toString().trim().toLowerCase());
+                    String password = (textView_Password.getText().toString().trim());
+                    ThriftUserType userType = ThriftUserType.findByValue(spinner_UserType.getSelectedItemPosition());
 
-                ((LoginActivity) getActivity()).executeRegistration(email, password, userType);
+                    ((LoginActivity) getActivity()).executeRegistration(email, password, userType);
+                } else
+                {
+                }
             }
+
         });
     }
 

@@ -13,7 +13,7 @@ import Util.AppSettings;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-public class ProfileFragment extends Fragment
+public class ProfileFragment extends BaseFragment
 {
     @Bind(R.id.profilescreen_textview_fullname)
     TextView textView_Fullname;
@@ -33,10 +33,8 @@ public class ProfileFragment extends Fragment
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
-        super.onCreateView(inflater, container, savedInstanceState);
-        View view = inflater.inflate(R.layout.content_profile_page, container, false);
+        super.onCreateView(inflater, container, savedInstanceState, R.layout.content_profile_page);
         ButterKnife.bind(this, view);
-
 
         User user = new User();
         user.setUserId(1);

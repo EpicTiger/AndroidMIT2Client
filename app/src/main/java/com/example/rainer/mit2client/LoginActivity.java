@@ -1,6 +1,8 @@
 package com.example.rainer.mit2client;
 
 import android.app.FragmentManager;
+import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -21,6 +23,8 @@ import Politics247Generated.ThriftUserType;
 
 public class LoginActivity extends AppCompatActivity implements FragmentManager.OnBackStackChangedListener, LoginAsyncResponse
 {
+    private ProgressDialog loginProgressDialog;
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -34,12 +38,18 @@ public class LoginActivity extends AppCompatActivity implements FragmentManager.
             getFragmentManager()
                     .beginTransaction()
                     .add(R.id.fragmentParentViewGroup, new LoginFragment())
+                    .addToBackStack(String.valueOf(R.string.nav_drawer_fragment_login))
                     .commit();
         }
     }
 
     public void executeLogin(String email, String password)
     {
+//        loginProgressDialog = new ProgressDialog(getApplicationContext());
+//        loginProgressDialog.setMessage("Logging in...");
+//        loginProgressDialog.setCancelable(false);
+//        loginProgressDialog.show();
+
         LoginData loginData = new LoginData();
         loginData.setEmail(email);
         loginData.setPassword(password);
@@ -96,12 +106,13 @@ public class LoginActivity extends AppCompatActivity implements FragmentManager.
     @Override
     public void loginProcessFinish(LoginResult result)
     {
+        //loginProgressDialog.dismiss();
         if (result != null)
         {
-            Toast.makeText(this, "Login Success", Toast.LENGTH_SHORT).show();
+            gotoHomeSreen();
         } else
         {
-            Toast.makeText(this, "Login Error", Toast.LENGTH_SHORT).show();
+
         }
     }
 
@@ -139,6 +150,12 @@ public class LoginActivity extends AppCompatActivity implements FragmentManager.
         {
             Toast.makeText(this, "Password Change Error", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    private void gotoHomeSreen()
+    {
+        Intent intent = new Intent(this, NavigationDrawer.class);
+        startActivity(intent);
     }
 }
 

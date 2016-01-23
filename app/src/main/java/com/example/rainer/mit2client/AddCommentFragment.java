@@ -1,8 +1,6 @@
 package com.example.rainer.mit2client;
 
-import android.app.Fragment;
 import android.os.Bundle;
-import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,10 +10,8 @@ import android.widget.TextView;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-public class AddCommentFragment extends Fragment
+public class AddCommentFragment extends BaseFragment
 {
-    @Bind(R.id.container)
-    public CoordinatorLayout container;
     @Bind(R.id.create_add_comment_button)
     FloatingActionButton floatingActionButton_AddComment;
     @Bind(R.id.create_add_comment_text)
@@ -24,9 +20,7 @@ public class AddCommentFragment extends Fragment
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
-        super.onCreateView(inflater, container, savedInstanceState);
-        View view = inflater.inflate(R.layout.content_add_comment_page, container, false);
-
+        super.onCreateView(inflater, container, savedInstanceState, R.layout.content_add_comment_page);
         ButterKnife.bind(this, view);
 
         initializeButtons();
@@ -47,7 +41,7 @@ public class AddCommentFragment extends Fragment
                     ((NavigationDrawer) getActivity()).executeAddComment(0, 0, comment);
                 } else
                 {
-                    Util.Util.ShowSnackbarShort(container, "Comment can not be empty");
+                    showSnackbarShort("Comment can not be empty");
                 }
             }
         });

@@ -21,19 +21,16 @@ import Util.AppSettings;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-public class UsersFragment extends Fragment
+public class UsersFragment extends BaseFragment
 {
     private List<User> users;
     @Bind(R.id.homescreen_listview_article)
     ListView listView;
-    @Bind(R.id.container)
-    public CoordinatorLayout container;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
-        super.onCreateView(inflater, container, savedInstanceState);
-        View view = inflater.inflate(R.layout.content_home_screen, container, false);
+        super.onCreateView(inflater, container, savedInstanceState, R.layout.content_home_screen);
         ButterKnife.bind(this, view);
 
         List<User> list = inititalizeItemList();

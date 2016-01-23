@@ -1,6 +1,5 @@
 package com.example.rainer.mit2client;
 
-import android.app.Fragment;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.text.InputType;
@@ -16,7 +15,7 @@ import Entities.User;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-public class EditProfileFragment extends Fragment
+public class EditProfileFragment extends BaseFragment
 {
     @Bind(R.id.profile_edit_name)
     TextView textView_Fullname;
@@ -36,8 +35,7 @@ public class EditProfileFragment extends Fragment
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
-        super.onCreateView(inflater, container, savedInstanceState);
-        View view = inflater.inflate(R.layout.content_profile_edit_page, container, false);
+        super.onCreateView(inflater, container, savedInstanceState, R.layout.content_profile_edit_page);
         ButterKnife.bind(this, view);
 
         setHasOptionsMenu(true);

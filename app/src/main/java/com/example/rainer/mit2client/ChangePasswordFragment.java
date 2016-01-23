@@ -1,6 +1,5 @@
 package com.example.rainer.mit2client;
 
-import android.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,10 +7,11 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import Util.AppSettings;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-public class ChangePasswordFragment extends Fragment
+public class ChangePasswordFragment extends BaseFragment
 {
     @Bind(R.id.changepasswordscreen_changepassword_button)
     Button button_ChangePassword;
@@ -24,13 +24,10 @@ public class ChangePasswordFragment extends Fragment
     @Bind(R.id.changepasswordscreen_confirm_password)
     TextView textView_ConfirmPassword;
 
-    View view;
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
-        super.onCreateView(inflater, container, savedInstanceState);
-        view = inflater.inflate(R.layout.content_changepassword_screen, container, false);
+        super.onCreateView(inflater, container, savedInstanceState,R.layout.content_changepassword_screen);
         ButterKnife.bind(this, view);
 
         initializeButtons();
@@ -45,17 +42,22 @@ public class ChangePasswordFragment extends Fragment
             @Override
             public void onClick(View view)
             {
-                String email = (textView_Email.getText().toString().trim());
-                String oldPassword = (textView_OldPassword.getText().toString().trim());
-                String newPassword = (textView_NewPassword.getText().toString().trim());
-                String confirmPassword = (textView_ConfirmPassword.getText().toString().trim());
-
-                if (newPassword.equals(confirmPassword))
+                if (AppSettings.UseServers)
                 {
-                    ((LoginActivity) getActivity()).executePasswordChange(email, oldPassword, newPassword);
+                    String email = (textView_Email.getText().toString().trim());
+                    String oldPassword = (textView_OldPassword.getText().toString().trim());
+                    String newPassword = (textView_NewPassword.getText().toString().trim());
+                    String confirmPassword = (textView_ConfirmPassword.getText().toString().trim());
+
+                    if (newPassword.equals(confirmPassword))
+                    {
+                        ((LoginActivity) getActivity()).executePasswordChange(email, oldPassword, newPassword);
+                    } else
+                    {
+                        showSnackbarLong("The new passwords don't match");
+                    }
                 } else
                 {
-                    Util.Util.ShowSnackbarLong(view, "The new passwords don't match");
                 }
             }
         });

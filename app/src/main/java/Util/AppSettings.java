@@ -7,7 +7,9 @@ import Entities.User;
 
 public class AppSettings
 {
-    public static String IpAddress = "192.168.178.17";
+    public static boolean UseServers = false;
+
+    public static String IpAddress = "192.168.178.200";
     public static int Port = 9090;
 
     public static List<Article> Articles;

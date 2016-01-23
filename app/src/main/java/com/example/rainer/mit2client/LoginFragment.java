@@ -1,6 +1,5 @@
 package com.example.rainer.mit2client;
 
-import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -9,10 +8,11 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import Util.AppSettings;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-public class LoginFragment extends Fragment
+public class LoginFragment extends BaseFragment
 {
     @Bind(R.id.loginscreen_register_button)
     Button button_Register;
@@ -25,13 +25,12 @@ public class LoginFragment extends Fragment
     @Bind(R.id.loginscreen_password)
     TextView textView_Password;
 
-    View view;
+    ViewGroup container;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
-        super.onCreateView(inflater, container, savedInstanceState);
-        view = inflater.inflate(R.layout.content_login_screen, container, false);
+        super.onCreateView(inflater, container, savedInstanceState, R.layout.content_login_screen);
         ButterKnife.bind(this, view);
 
         initializeButtons();
@@ -46,14 +45,27 @@ public class LoginFragment extends Fragment
             @Override
             public void onClick(View view)
             {
-//                String email = (textView_Email.getText().toString().trim());
-//                String password = (textView_Password.getText().toString().trim());
-//
-//                ((LoginActivity)getActivity()).executeLogin(email, password);
+                if (AppSettings.UseServers)
+                {
+                    String email = (textView_Email.getText().toString().trim());
+                    String password = (textView_Password.getText().toString().trim());
 
-                //((LoginActivity)getActivity()).executeLogin(email, password);
+                    if (email.isEmpty())
+                    {
+                        showSnackbarShort("E-mail can not be empty");
+                        return;
+                    }
+                    if (password.isEmpty())
+                    {
+                        showSnackbarShort("Password can not be empty");
+                        return;
+                    }
 
-                gotoHomeSreen();
+                    ((LoginActivity) getActivity()).executeLogin(email, password);
+                } else
+                {
+                    gotoHomeSreen();
+                }
             }
         });
 

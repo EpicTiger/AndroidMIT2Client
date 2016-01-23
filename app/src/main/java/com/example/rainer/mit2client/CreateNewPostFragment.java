@@ -1,6 +1,5 @@
 package com.example.rainer.mit2client;
 
-import android.app.Fragment;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.view.LayoutInflater;
@@ -11,7 +10,7 @@ import android.widget.TextView;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-public class CreateNewPostFragment extends Fragment
+public class CreateNewPostFragment extends BaseFragment
 {
     @Bind(R.id.create_new_post_create_post_button)
     FloatingActionButton floatingActionButton_CreatePostButton;
@@ -20,13 +19,10 @@ public class CreateNewPostFragment extends Fragment
     @Bind(R.id.create_new_post_text)
     TextView textView_Text;
 
-    View view;
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
-        super.onCreateView(inflater, container, savedInstanceState);
-        view = inflater.inflate(R.layout.content_create_new_post_page, container, false);
+        super.onCreateView(inflater, container, savedInstanceState,R.layout.content_create_new_post_page);
         ButterKnife.bind(this, view);
 
         initializeButtons();
