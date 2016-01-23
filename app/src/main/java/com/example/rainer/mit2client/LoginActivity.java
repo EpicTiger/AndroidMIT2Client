@@ -65,6 +65,8 @@ public class LoginActivity extends AppCompatActivity implements FragmentManager.
         registrationData.setEmailAddress(email);
         registrationData.setPassword(password);
         registrationData.setUserType(userType);
+        registrationData.setFirstname("");
+        registrationData.setLastname("");
 
         RegistrationThriftClass registrationThriftClass = new RegistrationThriftClass();
         registrationThriftClass.delegate = this;

@@ -7,10 +7,10 @@ import Entities.User;
 
 public class AppSettings
 {
-    public static boolean UseServers = false;
+    public static boolean UseServers = true;
 
     public static String IpAddress = "192.168.178.200";
-    public static int Port = 9090;
+    public static int Port = 30000;
 
     public static List<Article> Articles;
     public static int ArticleArrayPosition;
