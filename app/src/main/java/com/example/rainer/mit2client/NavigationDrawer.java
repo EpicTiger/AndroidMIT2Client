@@ -14,6 +14,9 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import AsyncClasses.CommentThriftClass;
 import AsyncClasses.CreateContentThriftClass;
 import AsyncClasses.NavigationDrawerAsyncResponse;
@@ -21,6 +24,7 @@ import AsyncClasses.RatingThriftClass;
 import AsyncClasses.SearchUserThriftClass;
 import AsyncClasses.SubcriberThriftClass;
 import AsyncClasses.ViewUserProfileThriftClass;
+import Entities.User;
 import Politics247Generated.CommentData;
 import Politics247Generated.CommentResult;
 import Politics247Generated.CreateContentData;
@@ -29,9 +33,10 @@ import Politics247Generated.RateData;
 import Politics247Generated.RateResult;
 import Politics247Generated.SubscriptionData;
 import Politics247Generated.SubscriptionResult;
-import Politics247Generated.UserManagementClientService;
 import Politics247Generated.UserProfileResult;
+import Politics247Generated.UserResult;
 import Politics247Generated.UserSearchResult;
+import Util.AppSettings;
 
 public class NavigationDrawer extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, NavigationDrawerAsyncResponse
 {
@@ -76,8 +81,10 @@ public class NavigationDrawer extends AppCompatActivity implements NavigationVie
             @Override
             public boolean onQueryTextSubmit(String query)
             {
+                AppSettings.SearchQuery = query;
                 getFragmentManager().beginTransaction()
-                        .replace(R.id.fragmentParentViewGroup, new UsersFragment())
+                        .replace(R.id.fragmentParentViewGroup, new UsersFragment(), String.valueOf(R.string.nav_drawer_fragment_user_list))
+                        .addToBackStack(String.valueOf(R.string.nav_drawer_fragment_user_list))
                         .commit();
                 searchView.setQuery("", false);
                 searchView.setIconified(true);
@@ -113,18 +120,20 @@ public class NavigationDrawer extends AppCompatActivity implements NavigationVie
         if (id == R.id.nav_home)
         {
             getFragmentManager().beginTransaction()
-                    .replace(R.id.fragmentParentViewGroup, new HomeFragment())
+                    .replace(R.id.fragmentParentViewGroup, new HomeFragment(), String.valueOf(R.string.nav_drawer_fragment_home))
+                    .addToBackStack(String.valueOf(R.string.nav_drawer_fragment_home))
                     .commit();
         } else if (id == R.id.nav_profile)
         {
             getFragmentManager().beginTransaction()
-                    .replace(R.id.fragmentParentViewGroup, new EditProfileFragment())
+                    .replace(R.id.fragmentParentViewGroup, new EditProfileFragment(), String.valueOf(R.string.nav_drawer_fragment_own_profile))
                     .addToBackStack(getString(R.string.nav_drawer_fragment_own_profile))
                     .commit();
         } else if (id == R.id.nav_create_new_post)
         {
             getFragmentManager().beginTransaction()
-                    .replace(R.id.fragmentParentViewGroup, new CreateNewPostFragment())
+                    .replace(R.id.fragmentParentViewGroup, new CreateNewPostFragment(), String.valueOf(R.string.nav_drawer_fragment_create_content))
+                    .addToBackStack(String.valueOf(R.string.nav_drawer_fragment_create_content))
                     .commit();
         } else if (id == R.id.nav_logout)
         {
@@ -136,23 +145,23 @@ public class NavigationDrawer extends AppCompatActivity implements NavigationVie
         return true;
     }
 
-    public void executeAddComment(int postId, int userId, String commentText)
+    public void executeAddComment(int postId, String commentText)
     {
         CommentData commentData = new CommentData();
         commentData.setCommentText(commentText);
         commentData.setPostID(postId);
-        commentData.setUserID(userId);
+        commentData.setUserID(AppSettings.LoggedInUserId);
 
         CommentThriftClass commentThriftClass = new CommentThriftClass();
         commentThriftClass.delegate = this;
         commentThriftClass.execute(commentData);
     }
 
-    public void executeAddRating(int postId, int userId, double rating)
+    public void executeAddRating(int postId, double rating)
     {
         RateData rateData = new RateData();
         rateData.setPostID(postId);
-        rateData.setUserID(userId);
+        rateData.setUserID(AppSettings.LoggedInUserId);
         rateData.setRatingValue(rating);
 
         RatingThriftClass commentThriftClass = new RatingThriftClass();
@@ -160,10 +169,10 @@ public class NavigationDrawer extends AppCompatActivity implements NavigationVie
         commentThriftClass.execute(rateData);
     }
 
-    public void executeCreateContent(int userId, String title, String text)
+    public void executeCreateContent(String title, String text)
     {
         CreateContentData createContentData = new CreateContentData();
-        createContentData.setUserID(userId);
+        createContentData.setUserID(AppSettings.LoggedInUserId);
         createContentData.setPostTitle(title);
         createContentData.setPostText(text);
 
@@ -249,48 +258,116 @@ public class NavigationDrawer extends AppCompatActivity implements NavigationVie
     @Override
     public void createContentProcessFinish(CreateContentResult result)
     {
-        if (result != null)
+        CreateNewPostFragment fragment = (CreateNewPostFragment) getFragmentManager().findFragmentByTag(String.valueOf(R.string.nav_drawer_fragment_home));
+
+        if (fragment != null)
         {
-            Util.Util.ShowToastLong(this, "Content Added");
-        } else
-        {
-            Util.Util.ShowToastLong(this, "Could not add content.");
+            if (result != null)
+            {
+                fragment.showSnackbarShort("Content Added");
+            } else
+            {
+                fragment.showSnackbarLong("Could not connect to server");
+            }
         }
     }
 
     @Override
     public void subcriberProcessFinish(SubscriptionResult result)
     {
-        if (result != null)
+        ProfileFragment fragment = (com.example.rainer.mit2client.ProfileFragment) getFragmentManager().findFragmentByTag(String.valueOf(R.string.nav_drawer_fragment_profile));
+
+        if (fragment != null)
         {
-            Util.Util.ShowToastLong(this, "Subscription Added");
-        } else
-        {
-            Util.Util.ShowToastLong(this, "Could not add subscription.");
+            if (result != null)
+            {
+                if (result.isSubscriberIDValid && result.isSubscriptionIDValid)
+                {
+                    fragment.showSnackbarShort("Subscription Added");
+                }
+            } else
+            {
+                fragment.showSnackbarLong("Could not connect to server");
+            }
         }
     }
 
     @Override
     public void searchProcessFinish(UserSearchResult result)
     {
-        if (result != null)
-        {
+        UsersFragment fragment = (UsersFragment) getFragmentManager().findFragmentByTag(String.valueOf(R.string.nav_drawer_fragment_user_list));
 
-        } else
+        if (fragment != null)
         {
-            Util.Util.ShowToastLong(this, "No users found.");
+            if (result != null)
+            {
+                List<User> userList = new ArrayList<>();
+
+                if (!result.UserList.isEmpty())
+                {
+                    for (UserResult userResult : result.UserList)
+                    {
+                        User user = new User();
+
+                        user.setUserId(userResult.getUserId());
+
+                        if (userResult.getUserFirstName() != null && !userResult.getUserFirstName().isEmpty())
+                            user.setFirstname(userResult.getUserFirstName());
+
+                        if (userResult.getUserLastNamePrefix() != null && !userResult.getUserLastNamePrefix().isEmpty())
+                            user.setLastnameprefix(userResult.getUserLastNamePrefix());
+
+                        if (userResult.getUserLastName() != null && !userResult.getUserLastName().isEmpty())
+                            user.setLastname(userResult.getUserLastName());
+
+                        userList.add(user);
+                    }
+
+                    AppSettings.Users = userList;
+                    fragment.setAndFillListAdapter(userList);
+                } else
+                {
+                    fragment.showSnackbarLong("No users found");
+                }
+            } else
+            {
+                fragment.showSnackbarLong("Could not connect to server");
+            }
         }
     }
 
     @Override
     public void viewUserProfileProcessFinish(UserProfileResult result)
     {
+        EditProfileFragment fragment = (EditProfileFragment) getFragmentManager().findFragmentByTag(String.valueOf(R.string.nav_drawer_fragment_own_profile));
+        ProfileFragment ProfileFragment = (com.example.rainer.mit2client.ProfileFragment) getFragmentManager().findFragmentByTag(String.valueOf(R.string.nav_drawer_fragment_profile));
+
         if (result != null)
         {
+            User user = new User();
+            user.setUserId(result.getUserId());
+            user.setFirstname(result.firstName);
+            user.setLastnameprefix(result.lastNamePrefix);
+            user.setLastname(result.lastName);
+            user.setDateOfBirth(result.dateOfBirth.toString());
+            user.setNationality(result.nationality);
+            user.setGender(result.gender.toString());
+            user.setPoliticalPreference(result.politicalPreference);
+
+            if (fragment != null)
+            {
+                //   if (result.getUserId() == AppSettings.LoggedInUserId)
+                fragment.initializeData(user);
+            }
+            if (ProfileFragment != null)
+            {
+                ProfileFragment.initializeData(user);
+            }
 
         } else
         {
-            Util.Util.ShowToastLong(this, "No users information found.");
+            fragment.showSnackbarLong("Could not connect to server");
         }
+
     }
 }

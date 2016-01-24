@@ -27,7 +27,7 @@ public class ChangePasswordFragment extends BaseFragment
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
-        super.onCreateView(inflater, container, savedInstanceState,R.layout.content_changepassword_screen);
+        super.onCreateView(inflater, container, savedInstanceState, R.layout.content_changepassword_screen);
         ButterKnife.bind(this, view);
 
         initializeButtons();
@@ -58,6 +58,7 @@ public class ChangePasswordFragment extends BaseFragment
                     }
                 } else
                 {
+                    getActivity().onBackPressed();
                 }
             }
         });

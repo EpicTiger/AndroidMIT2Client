@@ -1,7 +1,6 @@
 package com.example.rainer.mit2client;
 
 import android.app.FragmentManager;
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -19,12 +18,11 @@ import Politics247Generated.PasswordChangeResult;
 import Politics247Generated.RegistrationData;
 import Politics247Generated.RegistrationResult;
 import Politics247Generated.ThriftUserType;
+import Util.AppSettings;
 
 
 public class LoginActivity extends AppCompatActivity implements FragmentManager.OnBackStackChangedListener, LoginAsyncResponse
 {
-    private ProgressDialog loginProgressDialog;
-
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -37,7 +35,7 @@ public class LoginActivity extends AppCompatActivity implements FragmentManager.
         {
             getFragmentManager()
                     .beginTransaction()
-                    .add(R.id.fragmentParentViewGroup, new LoginFragment())
+                    .add(R.id.fragmentParentViewGroup, new LoginFragment(), String.valueOf(R.string.nav_drawer_fragment_login))
                     .addToBackStack(String.valueOf(R.string.nav_drawer_fragment_login))
                     .commit();
         }
@@ -45,11 +43,6 @@ public class LoginActivity extends AppCompatActivity implements FragmentManager.
 
     public void executeLogin(String email, String password)
     {
-//        loginProgressDialog = new ProgressDialog(getApplicationContext());
-//        loginProgressDialog.setMessage("Logging in...");
-//        loginProgressDialog.setCancelable(false);
-//        loginProgressDialog.show();
-
         LoginData loginData = new LoginData();
         loginData.setEmail(email);
         loginData.setPassword(password);
@@ -90,7 +83,7 @@ public class LoginActivity extends AppCompatActivity implements FragmentManager.
     {
         int count = getFragmentManager().getBackStackEntryCount();
 
-        if (count == 0)
+        if (count == 1)
         {
             super.onBackPressed();
         } else
@@ -108,36 +101,55 @@ public class LoginActivity extends AppCompatActivity implements FragmentManager.
     @Override
     public void loginProcessFinish(LoginResult result)
     {
-        //loginProgressDialog.dismiss();
-        if (result != null)
-        {
-            gotoHomeSreen();
-        } else
-        {
+        LoginFragment fragment = (LoginFragment) getFragmentManager().findFragmentByTag(String.valueOf(R.string.nav_drawer_fragment_login));
 
+        if (fragment != null)
+        {
+            if (result != null)
+            {
+                if (result.isLoginSuccessful)
+                {
+                    AppSettings.LoggedInUserId = result.userId;
+                    gotoHomeSreen();
+                } else
+                {
+                    fragment.showSnackbarLong("Credentials are invalid");
+                }
+            } else
+            {
+                fragment.showSnackbarLong("Could not connect to server");
+            }
         }
     }
 
     @Override
     public void registrationProcessFinish(RegistrationResult result)
     {
-        if (result == null)
-        {
-            return;
-        }
+        RegisterFragment fragment = (RegisterFragment) getFragmentManager().findFragmentByTag(String.valueOf(R.string.nav_drawer_fragment_register));
+        LoginFragment loginFragment = (LoginFragment) getFragmentManager().findFragmentByTag(String.valueOf(R.string.nav_drawer_fragment_login));
 
-        if (result.isRegistrationSuccessful)
+        if (fragment != null)
         {
-            super.onBackPressed();
-            Toast.makeText(this, "Registration successful", Toast.LENGTH_LONG).show();
-        } else
-        {
-            if (!result.isEmailValid)
+            if (result != null)
             {
-                Toast.makeText(this, "This is not a valid e-mail address", Toast.LENGTH_LONG).show();
-            } else if (!result.isIsPasswordValid())
+                if (result.isRegistrationSuccessful)
+                {
+                    onBackPressed();
+                    loginFragment.showSnackbarShort("Registration successful");
+                } else
+                {
+                    if (!result.isEmailValid)
+                    {
+                        fragment.showSnackbarLong("This is not a valid e-mail address");
+                    } else if (!result.isIsPasswordValid())
+                    {
+                        fragment.showSnackbarLong("Password is not valid.");
+                    }
+                }
+            }
+            else
             {
-                Toast.makeText(this, "This is not a valid password", Toast.LENGTH_LONG).show();
+                fragment.showSnackbarLong("Could not connect to server");
             }
         }
     }
@@ -145,12 +157,28 @@ public class LoginActivity extends AppCompatActivity implements FragmentManager.
     @Override
     public void passwordChangedProcessFinish(PasswordChangeResult result)
     {
-        if (result != null)
+        ChangePasswordFragment fragment = (ChangePasswordFragment) getFragmentManager().findFragmentByTag(String.valueOf(R.string.nav_drawer_fragment_change_password));
+        LoginFragment loginFragment = (LoginFragment) getFragmentManager().findFragmentByTag(String.valueOf(R.string.nav_drawer_fragment_login));
+
+        if (fragment != null)
         {
-            Toast.makeText(this, "Password Change Success", Toast.LENGTH_SHORT).show();
-        } else
-        {
-            Toast.makeText(this, "Password Change Error", Toast.LENGTH_SHORT).show();
+            if (result != null)
+            {
+                if (result.isPasswordChangeSuccessful)
+                {
+                    onBackPressed();
+                    loginFragment.showSnackbarShort("Password successfully updated");
+                } else if (!result.isEmailValid || !result.isOldPasswordValid)
+                {
+                    fragment.showSnackbarLong("Credentials are invalid");
+                } else if (result.isNewPasswordValid)
+                {
+                    fragment.showSnackbarLong("New password is not valid.");
+                }
+            } else
+            {
+                fragment.showSnackbarLong("Could not connect to server");
+            }
         }
     }
 

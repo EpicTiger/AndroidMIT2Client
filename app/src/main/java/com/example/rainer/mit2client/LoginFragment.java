@@ -33,6 +33,9 @@ public class LoginFragment extends BaseFragment
         super.onCreateView(inflater, container, savedInstanceState, R.layout.content_login_screen);
         ButterKnife.bind(this, view);
 
+        textView_Email.setText("test@test.com");
+        textView_Password.setText("oldPassword");
+
         initializeButtons();
 
         return view;
@@ -97,16 +100,16 @@ public class LoginFragment extends BaseFragment
     private void gotoRegisterScreen()
     {
         getFragmentManager().beginTransaction()
-                .replace(R.id.fragmentParentViewGroup, new RegisterFragment())
-                .addToBackStack("Register fragment")
+                .replace(R.id.fragmentParentViewGroup, new RegisterFragment(), String.valueOf(R.string.nav_drawer_fragment_register))
+                .addToBackStack(String.valueOf(R.string.nav_drawer_fragment_register))
                 .commit();
     }
 
     private void gotoChangePasswordScreen()
     {
         getFragmentManager().beginTransaction()
-                .replace(R.id.fragmentParentViewGroup, new ChangePasswordFragment())
-                .addToBackStack("Change Password fragment")
+                .replace(R.id.fragmentParentViewGroup, new ChangePasswordFragment(), String.valueOf(R.string.nav_drawer_fragment_change_password))
+                .addToBackStack(String.valueOf(R.string.nav_drawer_fragment_change_password))
                 .commit();
     }
 }

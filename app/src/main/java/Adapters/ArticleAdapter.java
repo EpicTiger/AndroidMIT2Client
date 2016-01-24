@@ -77,7 +77,7 @@ public class ArticleAdapter extends ArrayAdapter<Article>
                     @Override
                     public void onClick(View view)
                     {
-                        ((NavigationDrawer)getContext()).executeAddRating(0,0,1.0);
+                        ((NavigationDrawer)getContext()).executeAddRating(0,1.0);
                     }
                 });
             }
@@ -90,7 +90,7 @@ public class ArticleAdapter extends ArrayAdapter<Article>
                     @Override
                     public void onClick(View view)
                     {
-                        ((NavigationDrawer)getContext()).executeAddRating(0, 0, 0.0);
+                        ((NavigationDrawer)getContext()).executeAddRating(0,0.0);
                     }
                 });
             }

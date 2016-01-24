@@ -22,7 +22,7 @@ public class ViewUserProfileThriftClass extends AsyncTask<Integer, Integer, User
         UserProfileResult result = null;
         try
         {
-            TSocket tsocket = new TSocket(AppSettings.IpAddress, AppSettings.Port);
+            TSocket tsocket = new TSocket(AppSettings.IpAddress, AppSettings.UsermanagementPort);
             TTransport transport = tsocket;
             transport.open();
 

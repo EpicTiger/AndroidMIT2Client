@@ -10,7 +10,10 @@ public class AppSettings
     public static boolean UseServers = true;
 
     public static String IpAddress = "192.168.178.200";
-    public static int Port = 30000;
+    public static int AuthenticationPort = 31220;
+    public static int ContentManagementPort = 31221;
+    public static int SubscriptionPort = 31223;
+    public static int UsermanagementPort = 31224;
 
     public static List<Article> Articles;
     public static int ArticleArrayPosition;
@@ -19,4 +22,5 @@ public class AppSettings
     public static int UserArrayPosition;
 
     public static int LoggedInUserId;
+    public static String SearchQuery;
 }

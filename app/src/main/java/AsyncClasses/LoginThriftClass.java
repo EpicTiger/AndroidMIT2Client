@@ -22,7 +22,7 @@ public class LoginThriftClass extends AsyncTask<LoginData, Integer, LoginResult>
         LoginResult result = null;
         try
         {
-            TSocket tsocket = new TSocket(AppSettings.IpAddress, AppSettings.Port);
+            TSocket tsocket = new TSocket(AppSettings.IpAddress, AppSettings.AuthenticationPort);
             TTransport transport = tsocket;
             transport.open();
 

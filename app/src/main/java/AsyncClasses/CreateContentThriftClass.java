@@ -22,7 +22,7 @@ public class CreateContentThriftClass extends AsyncTask<CreateContentData, Integ
         CreateContentResult result = null;
         try
         {
-            TSocket tsocket = new TSocket(AppSettings.IpAddress, AppSettings.Port);
+            TSocket tsocket = new TSocket(AppSettings.IpAddress, AppSettings.ContentManagementPort);
             TTransport transport = tsocket;
             transport.open();
 

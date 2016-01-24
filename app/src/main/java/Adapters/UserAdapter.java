@@ -57,8 +57,8 @@ public class UserAdapter extends ArrayAdapter<User>
                         AppSettings.UserArrayPosition = position;
 
                         ((Activity) context)
-                                .getFragmentManager().beginTransaction().replace(R.id.fragmentParentViewGroup, new ProfileFragment())
-                                .addToBackStack(String.valueOf(R.string.nav_drawer_fragment_content_detail)).commit();
+                                .getFragmentManager().beginTransaction().replace(R.id.fragmentParentViewGroup, new ProfileFragment(), String.valueOf(R.string.nav_drawer_fragment_profile))
+                                .addToBackStack(String.valueOf(R.string.nav_drawer_fragment_profile)).commit();
                     }
                 });
             }
@@ -70,7 +70,7 @@ public class UserAdapter extends ArrayAdapter<User>
                 StringBuilder stringBuilder = new StringBuilder();
                 stringBuilder.append(user.getFirstname());
                 stringBuilder.append(" ");
-                if (user.getLastnameprefix() != "")
+                if (user.getLastnameprefix() != "" && user.getLastnameprefix() != "null")
                 {
                     stringBuilder.append(user.getLastnameprefix());
                     stringBuilder.append(" ");

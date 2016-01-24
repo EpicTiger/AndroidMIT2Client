@@ -36,7 +36,7 @@ public class CreateNewPostFragment extends BaseFragment
             @Override
             public void onClick(View v)
             {
-                ((NavigationDrawer) getActivity()).executeCreateContent(0, String.valueOf(textView_Title.getText()), String.valueOf(textView_Text.getText()));
+                ((NavigationDrawer) getActivity()).executeCreateContent(String.valueOf(textView_Title.getText()), String.valueOf(textView_Text.getText()));
             }
         });
     }

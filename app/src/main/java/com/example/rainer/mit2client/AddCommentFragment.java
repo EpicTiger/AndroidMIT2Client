@@ -38,7 +38,7 @@ public class AddCommentFragment extends BaseFragment
                 String comment = String.valueOf(textView_CommentText.getText());
                 if (!comment.isEmpty())
                 {
-                    ((NavigationDrawer) getActivity()).executeAddComment(0, 0, comment);
+                    ((NavigationDrawer) getActivity()).executeAddComment(0, comment);
                 } else
                 {
                     showSnackbarShort("Comment can not be empty");

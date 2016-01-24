@@ -23,7 +23,7 @@ public class RegistrationThriftClass extends AsyncTask<RegistrationData, Integer
 
         try
         {
-            TSocket tsocket = new TSocket(AppSettings.IpAddress, AppSettings.Port);
+            TSocket tsocket = new TSocket(AppSettings.IpAddress, AppSettings.AuthenticationPort);
             TTransport transport = tsocket;
             transport.open();
 

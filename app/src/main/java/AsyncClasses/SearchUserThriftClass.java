@@ -21,7 +21,7 @@ public class SearchUserThriftClass extends AsyncTask<String, Integer, UserSearch
         UserSearchResult result = null;
         try
         {
-            TSocket tsocket = new TSocket(AppSettings.IpAddress, AppSettings.Port);
+            TSocket tsocket = new TSocket(AppSettings.IpAddress, AppSettings.UsermanagementPort);
             TTransport transport = tsocket;
             transport.open();
 

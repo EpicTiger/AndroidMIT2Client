@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import Entities.User;
+import Util.AppSettings;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
@@ -40,20 +41,14 @@ public class EditProfileFragment extends BaseFragment
 
         setHasOptionsMenu(true);
 
-        User user = new User();
-        user.setFirstname("Wiel");
-        user.setLastnameprefix("van den");
-        user.setLastname("Kruiwagen");
-        user.setTown("Heerln");
-
-        initializeData(user);
+        ((NavigationDrawer) getActivity()).executeViewUserProfile(AppSettings.LoggedInUserId);
 
         floatingActionButton_SubmitEditProfileData.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View v)
             {
-                //TODO: Setup network.
+                //TODO: Update Profile
                 disableEditTextViews();
             }
         });
@@ -61,8 +56,8 @@ public class EditProfileFragment extends BaseFragment
         disableEditTextViews();
 
         return view;
-    }
 
+    }
     private void disableEditTextViews()
     {
         textView_Fullname.clearFocus();
@@ -106,7 +101,7 @@ public class EditProfileFragment extends BaseFragment
         floatingActionButton_SubmitEditProfileData.setVisibility(View.VISIBLE);
     }
 
-    private void initializeData(User user)
+    public void initializeData(User user)
     {
         textView_Fullname.setText(String.format("%s %s %s", user.getFirstname(), user.getLastnameprefix(), user.getLastname()));
         textView_Gender.setText(user.getGender());

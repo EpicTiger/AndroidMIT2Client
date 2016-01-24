@@ -22,7 +22,7 @@ public class PasswordChangeThriftClass extends AsyncTask<PasswordChangeData, Int
         PasswordChangeResult result = null;
         try
         {
-            TSocket tsocket = new TSocket(AppSettings.IpAddress, AppSettings.Port);
+            TSocket tsocket = new TSocket(AppSettings.IpAddress, AppSettings.AuthenticationPort);
             TTransport transport = tsocket;
             transport.open();
 

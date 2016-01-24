@@ -22,7 +22,7 @@ public class SubcriberThriftClass extends AsyncTask<SubscriptionData, Integer, S
         SubscriptionResult result = null;
         try
         {
-            TSocket tsocket = new TSocket(AppSettings.IpAddress, AppSettings.Port);
+            TSocket tsocket = new TSocket(AppSettings.IpAddress, AppSettings.SubscriptionPort);
             TTransport transport = tsocket;
             transport.open();
 

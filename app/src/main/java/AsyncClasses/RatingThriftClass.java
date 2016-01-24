@@ -22,7 +22,7 @@ public class RatingThriftClass extends AsyncTask<RateData, Integer, RateResult>
         RateResult result = null;
         try
         {
-            TSocket tsocket = new TSocket(AppSettings.IpAddress, AppSettings.Port);
+            TSocket tsocket = new TSocket(AppSettings.IpAddress, AppSettings.ContentManagementPort);
             TTransport transport = tsocket;
             transport.open();
 

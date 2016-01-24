@@ -46,8 +46,16 @@
     <string name="nav_drawer_fragment_content_detail">Content Detail</string>
     <string name="nav_drawer_fragment_add_comment">Add Comment</string>
     <string name="nav_drawer_fragment_login">Login</string>
-    <string name="Comment">Comment</string>
+    <string name="nav_drawer_fragment_register">Register</string>
+    <string name="nav_drawer_fragment_change_password">Change Password</string>
+    <string name="nav_drawer_fragment_user_list">User List</string>
     <string name="nav_drawer_fragment_own_profile">Profile Edit Screen</string>
+    <string name="nav_drawer_fragment_profile">Profile</string>
+
     <string name="Subscribe">Subscribe</string>
+    <string name="Comment">Comment</string>
+    <string name="nav_drawer_fragment_create_content">Create Content</string>
+    <string name="nav_drawer_fragment_home">Home</string>
+
 
 </resources>

@@ -1,6 +1,5 @@
 package com.example.rainer.mit2client;
 
-import android.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -30,25 +29,30 @@ public class ProfileFragment extends BaseFragment
     @Bind(R.id.profilescreen_subcribe_button)
     Button button_Subscribe;
 
+    User user;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
         super.onCreateView(inflater, container, savedInstanceState, R.layout.content_profile_page);
         ButterKnife.bind(this, view);
 
-        User user = new User();
-        user.setUserId(1);
-        user.setFirstname("Wiel");
-        user.setLastnameprefix("van den");
-        user.setLastname("Kruiwagen");
-        user.setTown("Heerln");
+        user = AppSettings.Users.get(AppSettings.UserArrayPosition);
+        ((NavigationDrawer) getActivity()).executeViewUserProfile(user.getUserId());
 
-        initializeData(user);
+        button_Subscribe.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                ((NavigationDrawer) getActivity()).executeAddSubscription(AppSettings.LoggedInUserId, user.getUserId());
+            }
+        });
 
         return view;
     }
 
-    private void initializeData(User user)
+    public void initializeData(User user)
     {
         textView_Fullname.setText(String.format("%s %s %s", user.getFirstname(), user.getLastnameprefix(), user.getLastname()));
         textView_Gender.setText(user.getGender());
