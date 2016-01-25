@@ -19,16 +19,20 @@ import java.util.List;
 
 import AsyncClasses.CommentThriftClass;
 import AsyncClasses.CreateContentThriftClass;
+import AsyncClasses.HomeContentThriftClass;
 import AsyncClasses.NavigationDrawerAsyncResponse;
 import AsyncClasses.RatingThriftClass;
 import AsyncClasses.SearchUserThriftClass;
 import AsyncClasses.SubcriberThriftClass;
 import AsyncClasses.ViewUserProfileThriftClass;
+import Entities.Article;
 import Entities.User;
+import Politics247Generated.ArticleResult;
 import Politics247Generated.CommentData;
 import Politics247Generated.CommentResult;
 import Politics247Generated.CreateContentData;
 import Politics247Generated.CreateContentResult;
+import Politics247Generated.HomeScreenContentResult;
 import Politics247Generated.RateData;
 import Politics247Generated.RateResult;
 import Politics247Generated.SubscriptionData;
@@ -53,9 +57,9 @@ public class NavigationDrawer extends AppCompatActivity implements NavigationVie
 
         if (savedInstanceState == null)
         {
-            getFragmentManager()
-                    .beginTransaction()
-                    .add(R.id.fragmentParentViewGroup, new HomeFragment())
+            getFragmentManager().beginTransaction()
+                    .replace(R.id.fragmentParentViewGroup, new HomeFragment(), String.valueOf(R.string.nav_drawer_fragment_home))
+                    .addToBackStack(String.valueOf(R.string.nav_drawer_fragment_home))
                     .commit();
         }
 
@@ -157,6 +161,13 @@ public class NavigationDrawer extends AppCompatActivity implements NavigationVie
         commentThriftClass.execute(commentData);
     }
 
+    public void executeHomecontent()
+    {
+        HomeContentThriftClass homeContentThriftClass = new HomeContentThriftClass();
+        homeContentThriftClass.delegate = this;
+        homeContentThriftClass.execute(AppSettings.LoggedInUserId);
+    }
+
     public void executeAddRating(int postId, double rating)
     {
         RateData rateData = new RateData();
@@ -240,6 +251,31 @@ public class NavigationDrawer extends AppCompatActivity implements NavigationVie
         } else
         {
             Util.Util.ShowToastLong(this, "Could not add comment.");
+        }
+    }
+
+    @Override
+    public void homeContentProcessFinish(HomeScreenContentResult result)
+    {
+        HomeFragment fragment = (HomeFragment) getFragmentManager().findFragmentByTag(String.valueOf(R.string.nav_drawer_fragment_home));
+
+        if (fragment != null)
+        {
+            if (result != null)
+            {
+                List<Article> articles = new ArrayList<>();
+
+                for (ArticleResult homeScreenContentResult : result.getArticleList())
+                {
+                    Article article = fragment.createArticle(homeScreenContentResult.articleID, homeScreenContentResult.articleTitle, homeScreenContentResult.getArticleText(), R.drawable.ic_no_photo, homeScreenContentResult.getArticleViews());
+                    articles.add(article);
+                }
+
+                fragment.setAndFillListAdapter(articles);
+            } else
+            {
+                fragment.showSnackbarLong("Could not connect to server");
+            }
         }
     }
 
