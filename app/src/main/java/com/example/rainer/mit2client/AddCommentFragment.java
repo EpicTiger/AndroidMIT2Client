@@ -7,6 +7,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import Entities.Article;
+import Util.AppSettings;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
@@ -38,7 +40,8 @@ public class AddCommentFragment extends BaseFragment
                 String comment = String.valueOf(textView_CommentText.getText());
                 if (!comment.isEmpty())
                 {
-                    ((NavigationDrawer) getActivity()).executeAddComment(0, comment);
+                    Article article = AppSettings.Articles.get(AppSettings.ArticleArrayPosition);
+                    ((NavigationDrawer) getActivity()).executeAddComment((int) article.getId(), comment);
                 } else
                 {
                     showSnackbarShort("Comment can not be empty");

@@ -33,9 +33,6 @@ public class LoginFragment extends BaseFragment
         super.onCreateView(inflater, container, savedInstanceState, R.layout.content_login_screen);
         ButterKnife.bind(this, view);
 
-        textView_Email.setText("test@test.com");
-        textView_Password.setText("oldPassword");
-
         initializeButtons();
 
         return view;
@@ -64,6 +61,8 @@ public class LoginFragment extends BaseFragment
                         return;
                     }
 
+                    AppSettings.Email = email;
+                    AppSettings.Password = password;
                     ((LoginActivity) getActivity()).executeLogin(email, password);
                 } else
                 {

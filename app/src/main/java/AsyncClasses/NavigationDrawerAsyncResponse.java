@@ -6,6 +6,7 @@ import Politics247Generated.HomeScreenContentResult;
 import Politics247Generated.RateResult;
 import Politics247Generated.SubscriptionResult;
 import Politics247Generated.UserProfileResult;
+import Politics247Generated.UserProfileUpdateResult;
 import Politics247Generated.UserSearchResult;
 
 public interface NavigationDrawerAsyncResponse
@@ -23,4 +24,6 @@ public interface NavigationDrawerAsyncResponse
     void searchProcessFinish(UserSearchResult result);
 
     void viewUserProfileProcessFinish(UserProfileResult result);
+
+    void updateUserProfileProcessFinish(UserProfileUpdateResult result);
 }

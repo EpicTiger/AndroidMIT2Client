@@ -7,6 +7,10 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Locale;
+
 import Entities.User;
 import Util.AppSettings;
 import butterknife.Bind;
@@ -29,6 +33,7 @@ public class ProfileFragment extends BaseFragment
     @Bind(R.id.profilescreen_subcribe_button)
     Button button_Subscribe;
 
+    private SimpleDateFormat dateFormatter;
     User user;
 
     @Override
@@ -39,6 +44,8 @@ public class ProfileFragment extends BaseFragment
 
         user = AppSettings.Users.get(AppSettings.UserArrayPosition);
         ((NavigationDrawer) getActivity()).executeViewUserProfile(user.getUserId());
+
+        dateFormatter = new SimpleDateFormat("dd-MM-yyyy", Locale.US);
 
         button_Subscribe.setOnClickListener(new View.OnClickListener()
         {
@@ -55,9 +62,13 @@ public class ProfileFragment extends BaseFragment
     public void initializeData(User user)
     {
         textView_Fullname.setText(String.format("%s %s %s", user.getFirstname(), user.getLastnameprefix(), user.getLastname()));
-        textView_Gender.setText(user.getGender());
+        textView_Gender.setText("Male");
         textView_Nationality.setText(user.getNationality());
-        textView_DateOfBirth.setText(user.getDateOfBirth());
+
+        Calendar newDate = Calendar.getInstance();
+        newDate.set(user.getDateOfBirthYear(), user.getDateOfBirthMonth(), user.getDateOfBirthDay());
+        textView_DateOfBirth.setText(dateFormatter.format(newDate.getTime()));
+
         textView_PoliticalPreference.setText(user.getPoliticalPreference());
         textView_Town.setText(user.getTown());
     }

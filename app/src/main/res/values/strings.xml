@@ -43,6 +43,11 @@
         <item>Political user</item>
     </string-array>
 
+    <string-array name="gender_array">
+        <item>Male</item>
+        <item>Female</item>
+    </string-array>
+
     <string name="nav_drawer_fragment_content_detail">Content Detail</string>
     <string name="nav_drawer_fragment_add_comment">Add Comment</string>
     <string name="nav_drawer_fragment_login">Login</string>
@@ -56,6 +61,9 @@
     <string name="Comment">Comment</string>
     <string name="nav_drawer_fragment_create_content">Create Content</string>
     <string name="nav_drawer_fragment_home">Home</string>
+    <string name="FirstName">First name</string>
+    <string name="LastNamePrefix">Last name prefix</string>
+    <string name="LastName">Last name</string>
 
 
 </resources>

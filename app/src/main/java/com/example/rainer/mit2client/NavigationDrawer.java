@@ -24,6 +24,7 @@ import AsyncClasses.NavigationDrawerAsyncResponse;
 import AsyncClasses.RatingThriftClass;
 import AsyncClasses.SearchUserThriftClass;
 import AsyncClasses.SubcriberThriftClass;
+import AsyncClasses.UpdateUserProfileThriftClass;
 import AsyncClasses.ViewUserProfileThriftClass;
 import Entities.Article;
 import Entities.User;
@@ -38,6 +39,8 @@ import Politics247Generated.RateResult;
 import Politics247Generated.SubscriptionData;
 import Politics247Generated.SubscriptionResult;
 import Politics247Generated.UserProfileResult;
+import Politics247Generated.UserProfileUpdateData;
+import Politics247Generated.UserProfileUpdateResult;
 import Politics247Generated.UserResult;
 import Politics247Generated.UserSearchResult;
 import Util.AppSettings;
@@ -192,6 +195,28 @@ public class NavigationDrawer extends AppCompatActivity implements NavigationVie
         createContentThriftClass.execute(createContentData);
     }
 
+    public void executeUpdateProfile(User user)
+    {
+        UserProfileUpdateData userProfileUpdateData = new UserProfileUpdateData();
+        userProfileUpdateData.setUserId(AppSettings.LoggedInUserId);
+        userProfileUpdateData.setEmail(AppSettings.Email);
+        userProfileUpdateData.setPassword(AppSettings.Password);
+        userProfileUpdateData.setFirstName(user.getFirstname());
+        userProfileUpdateData.setLastNamePrefix(user.getLastnameprefix());
+        userProfileUpdateData.setLastName(user.getLastname());
+        userProfileUpdateData.setGender(user.getGender());
+        userProfileUpdateData.setNationality(user.getNationality());
+        userProfileUpdateData.dateOfBirth.setYear(user.getDateOfBirthYear());
+        userProfileUpdateData.dateOfBirth.setMonth(user.getDateOfBirthDay());
+        userProfileUpdateData.dateOfBirth.setDay(user.getDateOfBirthDay());
+        userProfileUpdateData.setPoliticalPreference(user.getPoliticalPreference());
+        userProfileUpdateData.setTown(user.getTown());
+
+        UpdateUserProfileThriftClass updateUserProfileThriftClass = new UpdateUserProfileThriftClass();
+        updateUserProfileThriftClass.delegate = this;
+        updateUserProfileThriftClass.execute(userProfileUpdateData);
+    }
+
     public void executeAddSubscription(int subscriberID, int subscriptionID)
     {
         SubscriptionData subscriptionData = new SubscriptionData();
@@ -245,12 +270,18 @@ public class NavigationDrawer extends AppCompatActivity implements NavigationVie
     @Override
     public void commentProcessFinish(CommentResult result)
     {
-        if (result != null)
+        AddCommentFragment fragment = (AddCommentFragment) getFragmentManager().findFragmentByTag(String.valueOf(R.string.nav_drawer_fragment_add_comment));
+
+        if (fragment != null)
         {
-            Util.Util.ShowToastLong(this, "Comment Added");
-        } else
-        {
-            Util.Util.ShowToastLong(this, "Could not add comment.");
+            if (result != null)
+            {
+                getFragmentManager().popBackStack();
+
+            } else
+            {
+                fragment.showSnackbarLong("Could not connect to server");
+            }
         }
     }
 
@@ -282,19 +313,24 @@ public class NavigationDrawer extends AppCompatActivity implements NavigationVie
     @Override
     public void rateProcessFinish(RateResult result)
     {
-        if (result != null)
+        HomeFragment fragment = (HomeFragment) getFragmentManager().findFragmentByTag(String.valueOf(R.string.nav_drawer_fragment_home));
+
+        if (fragment != null)
         {
-            Util.Util.ShowToastLong(this, "Rating Added");
-        } else
-        {
-            Util.Util.ShowToastLong(this, "Could not add rating.");
+            if (result != null)
+            {
+                fragment.showSnackbarShort("You have rated this item.");
+            } else
+            {
+                fragment.showSnackbarLong("Could not connect to server");
+            }
         }
     }
 
     @Override
     public void createContentProcessFinish(CreateContentResult result)
     {
-        CreateNewPostFragment fragment = (CreateNewPostFragment) getFragmentManager().findFragmentByTag(String.valueOf(R.string.nav_drawer_fragment_home));
+        CreateNewPostFragment fragment = (CreateNewPostFragment) getFragmentManager().findFragmentByTag(String.valueOf(R.string.nav_drawer_fragment_create_content));
 
         if (fragment != null)
         {
@@ -317,10 +353,7 @@ public class NavigationDrawer extends AppCompatActivity implements NavigationVie
         {
             if (result != null)
             {
-                if (result.isSubscriberIDValid && result.isSubscriptionIDValid)
-                {
-                    fragment.showSnackbarShort("Subscription Added");
-                }
+                fragment.showSnackbarShort("Subscription Added");
             } else
             {
                 fragment.showSnackbarLong("Could not connect to server");
@@ -385,14 +418,15 @@ public class NavigationDrawer extends AppCompatActivity implements NavigationVie
             user.setFirstname(result.firstName);
             user.setLastnameprefix(result.lastNamePrefix);
             user.setLastname(result.lastName);
-            user.setDateOfBirth(result.dateOfBirth.toString());
+            user.setDateOfBirthYear(result.dateOfBirth.year);
+            user.setDateOfBirthMonth(result.dateOfBirth.month);
+            user.setDateOfBirthDay(result.dateOfBirth.day);
             user.setNationality(result.nationality);
-            user.setGender(result.gender.toString());
+
             user.setPoliticalPreference(result.politicalPreference);
 
             if (fragment != null)
             {
-                //   if (result.getUserId() == AppSettings.LoggedInUserId)
                 fragment.initializeData(user);
             }
             if (ProfileFragment != null)
@@ -404,6 +438,12 @@ public class NavigationDrawer extends AppCompatActivity implements NavigationVie
         {
             fragment.showSnackbarLong("Could not connect to server");
         }
+
+    }
+
+    @Override
+    public void updateUserProfileProcessFinish(UserProfileUpdateResult result)
+    {
 
     }
 }

@@ -1,5 +1,6 @@
 package com.example.rainer.mit2client;
 
+import android.app.DatePickerDialog;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.text.InputType;
@@ -9,19 +10,33 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.DatePicker;
+import android.widget.Spinner;
 import android.widget.TextView;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
+
 import Entities.User;
+import Politics247Generated.ThriftGender;
 import Util.AppSettings;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
 public class EditProfileFragment extends BaseFragment
 {
-    @Bind(R.id.profile_edit_name)
-    TextView textView_Fullname;
-    @Bind(R.id.profile_edit_gender)
-    TextView textView_Gender;
+    @Bind(R.id.profile_edit_firstname)
+    TextView textView_Firstname;
+    @Bind(R.id.profile_edit_lastnameprefix)
+    TextView textView_Lastnameprefix;
+    @Bind(R.id.profile_edit_lastname)
+    TextView textView_Lastname;
+    @Bind(R.id.profile_edit_gender_spinner)
+    Spinner spinner_Gender;
     @Bind(R.id.profile_edit_nationality)
     TextView textView_Nationality;
     @Bind(R.id.profile_edit_date_of_birth)
@@ -33,82 +48,116 @@ public class EditProfileFragment extends BaseFragment
     @Bind(R.id.profile_edit_submit_edit_profile_data)
     FloatingActionButton floatingActionButton_SubmitEditProfileData;
 
+    private SimpleDateFormat dateFormatter;
+    private DatePickerDialog datePickerDialog;
+
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
+    public View onCreateView(LayoutInflater inflater, final ViewGroup container, Bundle savedInstanceState)
     {
         super.onCreateView(inflater, container, savedInstanceState, R.layout.content_profile_edit_page);
         ButterKnife.bind(this, view);
-
         setHasOptionsMenu(true);
-
-        ((NavigationDrawer) getActivity()).executeViewUserProfile(AppSettings.LoggedInUserId);
 
         floatingActionButton_SubmitEditProfileData.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View v)
             {
-                //TODO: Update Profile
-                disableEditTextViews();
+                //executeProfileChange();
+                disableElements();
             }
         });
 
-        disableEditTextViews();
+        textView_DateOfBirth.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                setDateTimeField();
+            }
+        });
 
+        dateFormatter = new SimpleDateFormat("dd-MM-yyyy", Locale.US);
+        ((NavigationDrawer) getActivity()).executeViewUserProfile(AppSettings.LoggedInUserId);
         return view;
-
     }
-    private void disableEditTextViews()
+
+    private void disableElements()
     {
-        textView_Fullname.clearFocus();
-        textView_Fullname.setEnabled(false);
-        textView_Fullname.setInputType(InputType.TYPE_NULL);
-        textView_Gender.clearFocus();
-        textView_Gender.setEnabled(false);
-        textView_Gender.setInputType(InputType.TYPE_NULL);
-        textView_Nationality.clearFocus();
-        textView_Nationality.setEnabled(false);
-        textView_Nationality.setInputType(InputType.TYPE_NULL);
-        textView_DateOfBirth.clearFocus();
-        textView_DateOfBirth.setEnabled(false);
-        textView_DateOfBirth.setInputType(InputType.TYPE_NULL);
-        textView_PoliticalPreference.clearFocus();
-        textView_PoliticalPreference.setEnabled(false);
-        textView_PoliticalPreference.setInputType(InputType.TYPE_NULL);
-        textView_Town.clearFocus();
-        textView_Town.setEnabled(false);
-        textView_Town.setInputType(InputType.TYPE_NULL);
+        disableEditText(textView_Firstname);
+        disableEditText(textView_Lastnameprefix);
+        disableEditText(textView_Lastname);
+        disableEditText(textView_Nationality);
+        disableEditText(textView_DateOfBirth);
+        disableEditText(textView_PoliticalPreference);
+        disableEditText(textView_Town);
+
+        spinner_Gender.clearFocus();
+        spinner_Gender.setEnabled(false);
+
         floatingActionButton_SubmitEditProfileData.clearFocus();
         floatingActionButton_SubmitEditProfileData.setEnabled(false);
         floatingActionButton_SubmitEditProfileData.setVisibility(View.GONE);
     }
 
-    private void enableEditTextViews()
+    private void enableElements()
     {
-        textView_Fullname.setEnabled(true);
-        textView_Fullname.setInputType(InputType.TYPE_CLASS_TEXT);
-        textView_Gender.setEnabled(true);
-        textView_Gender.setInputType(InputType.TYPE_CLASS_TEXT);
-        textView_Nationality.setEnabled(true);
-        textView_Nationality.setInputType(InputType.TYPE_CLASS_TEXT);
-        textView_DateOfBirth.setEnabled(true);
-        textView_DateOfBirth.setInputType(InputType.TYPE_CLASS_TEXT);
-        textView_PoliticalPreference.setEnabled(true);
-        textView_PoliticalPreference.setInputType(InputType.TYPE_CLASS_TEXT);
-        textView_Town.setEnabled(true);
-        textView_Town.setInputType(InputType.TYPE_CLASS_TEXT);
+        enableEditText(textView_Firstname);
+        enableEditText(textView_Lastnameprefix);
+        enableEditText(textView_Lastname);
+        enableEditText(textView_Nationality);
+        enableEditText(textView_DateOfBirth);
+        enableEditText(textView_PoliticalPreference);
+        enableEditText(textView_Town);
+
+        spinner_Gender.clearFocus();
+        spinner_Gender.setEnabled(true);
+
+        floatingActionButton_SubmitEditProfileData.clearFocus();
         floatingActionButton_SubmitEditProfileData.setEnabled(true);
         floatingActionButton_SubmitEditProfileData.setVisibility(View.VISIBLE);
     }
 
+    private void disableEditText(TextView textView)
+    {
+        textView.clearFocus();
+        textView.setEnabled(false);
+        textView.setInputType(InputType.TYPE_NULL);
+    }
+
+    private void enableEditText(TextView textView)
+    {
+        textView.clearFocus();
+        textView.setEnabled(true);
+        textView.setInputType(InputType.TYPE_CLASS_TEXT);
+    }
+
     public void initializeData(User user)
     {
-        textView_Fullname.setText(String.format("%s %s %s", user.getFirstname(), user.getLastnameprefix(), user.getLastname()));
-        textView_Gender.setText(user.getGender());
-        textView_Nationality.setText(user.getNationality());
-        textView_DateOfBirth.setText(user.getDateOfBirth());
-        textView_PoliticalPreference.setText(user.getPoliticalPreference());
-        textView_Town.setText(user.getTown());
+        textView_Firstname.setText(IsNotNull(user.getFirstname()));
+        textView_Lastnameprefix.setText(IsNotNull(user.getLastnameprefix()));
+        textView_Lastname.setText(IsNotNull(user.getLastname()));
+        textView_Nationality.setText(IsNotNull(user.getNationality()));
+
+        Calendar newDate = Calendar.getInstance();
+        newDate.set(user.getDateOfBirthYear(), user.getDateOfBirthMonth(), user.getDateOfBirthDay());
+        textView_DateOfBirth.setText(dateFormatter.format(newDate.getTime()));
+
+        textView_PoliticalPreference.setText(IsNotNull(user.getPoliticalPreference()));
+        textView_Town.setText(IsNotNull(user.getTown()));
+
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getActivity(), R.array.gender_array, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner_Gender.setAdapter(adapter);
+        disableElements();
+    }
+
+    private String IsNotNull(String value)
+    {
+        if (value != null)
+            return value;
+        else
+            return "";
     }
 
     @Override
@@ -125,9 +174,59 @@ public class EditProfileFragment extends BaseFragment
 
         if (id == R.id.edit_profile)
         {
-            enableEditTextViews();
+            enableElements();
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private void setDateTimeField()
+    {
+        Calendar newCalendar = Calendar.getInstance();
+        int year = newCalendar.get(Calendar.YEAR);
+        int month = newCalendar.get(Calendar.MONTH) + 1;
+        int day = newCalendar.get(Calendar.DAY_OF_MONTH);
+
+        datePickerDialog = new DatePickerDialog(view.getContext(), new DatePickerDialog.OnDateSetListener()
+        {
+            public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth)
+            {
+                Calendar newDate = Calendar.getInstance();
+                newDate.set(year, monthOfYear, dayOfMonth);
+                textView_DateOfBirth.setText(dateFormatter.format(newDate.getTime()));
+            }
+
+        }, year, month, day);
+
+        datePickerDialog.show();
+    }
+
+    private void executeProfileChange()
+    {
+        Date newDate = null;
+        try
+        {
+            String date = String.valueOf(textView_DateOfBirth.getText()).trim();
+            newDate = dateFormatter.parse(date);
+        } catch (ParseException e)
+        {
+            e.printStackTrace();
+        }
+
+        User user = new User();
+        user.setFirstname(textView_Firstname.getText().toString().trim());
+        user.setLastnameprefix(textView_Lastnameprefix.getText().toString().trim());
+        user.setLastname(textView_Lastname.getText().toString().trim());
+        user.setGender(ThriftGender.findByValue(spinner_Gender.getSelectedItemPosition()));
+        user.setNationality(textView_Nationality.getText().toString().trim());
+        user.setPoliticalPreference(textView_PoliticalPreference.getText().toString().trim());
+        user.setTown(textView_Town.getText().toString().trim());
+        user.setDateOfBirthYear(newDate.getYear());
+        user.setDateOfBirthMonth(newDate.getMonth());
+        user.setDateOfBirthDay(newDate.getDay());
+
+        ((NavigationDrawer) getActivity()).executeUpdateProfile(user);
+
+        disableElements();
     }
 }

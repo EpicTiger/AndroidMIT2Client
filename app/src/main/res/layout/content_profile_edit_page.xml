@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             xmlns:app="http://schemas.android.com/apk/res-auto"
-             xmlns:tools="http://schemas.android.com/tools"
-             android:layout_width="match_parent"
-             android:layout_height="match_parent"
-                                                 android:id="@+id/container"
-             app:layout_behavior="@string/appbar_scrolling_view_behavior"
-             tools:context="com.example.rainer.mit2client.ProfileFragment">
+<android.support.design.widget.CoordinatorLayout
+    android:id="@+id/container"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.example.rainer.mit2client.ProfileFragment">
 
     <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
@@ -34,10 +35,10 @@
                     app:hintTextAppearance="@style/TextAppearence.App.TextInputLayout">
 
                     <EditText
-                        android:id="@+id/profile_edit_name"
+                        android:id="@+id/profile_edit_firstname"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:hint="@string/Name"
+                        android:hint="@string/FirstName"
                         android:maxLength="150"
                         android:singleLine="false"
                         android:textColorHint="@color/colorAccent"
@@ -51,10 +52,27 @@
                     app:hintTextAppearance="@style/TextAppearence.App.TextInputLayout">
 
                     <EditText
-                        android:id="@+id/profile_edit_gender"
+                        android:id="@+id/profile_edit_lastnameprefix"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:hint="@string/Gender"
+                        android:hint="@string/LastNamePrefix"
+                        android:maxLength="150"
+                        android:singleLine="false"
+                        android:textColorHint="@color/colorAccent"
+                        android:textStyle="bold"/>
+
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:hintTextAppearance="@style/TextAppearence.App.TextInputLayout">
+
+                    <EditText
+                        android:id="@+id/profile_edit_lastname"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:hint="@string/LastName"
                         android:maxLength="150"
                         android:singleLine="false"
                         android:textColorHint="@color/colorAccent"
@@ -130,19 +148,32 @@
 
                 </android.support.design.widget.TextInputLayout>
 
-            </LinearLayout>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:text="@string/Gender"
+                    android:textStyle="bold"/>
 
-            <android.support.design.widget.FloatingActionButton
-                android:id="@+id/profile_edit_submit_edit_profile_data"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="bottom|end"
-                android:layout_margin="@dimen/fab_margin"
-                android:src="@mipmap/ic_cab_done_mtrl_alpha"/>
+                <Spinner
+                    android:id="@+id/profile_edit_gender_spinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/fab_margin"/>
+
+            </LinearLayout>
 
         </FrameLayout>
 
     </android.support.v4.widget.NestedScrollView>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/profile_edit_submit_edit_profile_data"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="@dimen/fab_margin"
+        android:src="@mipmap/ic_cab_done_mtrl_alpha"/>
 
 </android.support.design.widget.CoordinatorLayout>
 

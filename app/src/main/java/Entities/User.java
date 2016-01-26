@@ -1,25 +1,40 @@
 package Entities;
 
+import Politics247Generated.ThriftGender;
+
 public class User
 {
     private int UserId;
     private String Firstname;
     private String Lastnameprefix;
     private String Lastname;
-    private String Gender;
+
+    public ThriftGender getGender()
+    {
+        return Gender;
+    }
+
+    public void setGender(ThriftGender gender)
+    {
+        Gender = gender;
+    }
+
+    private ThriftGender Gender;
     private String Nationality;
-    private String DateOfBirth;
+    private int DateOfBirthYear;
+    private int DateOfBirthMonth;
+    private int DateOfBirthDay;
     private String PoliticalPreference;
     private String Town;
 
-    public String getTown()
+    public int getUserId()
     {
-        return Town;
+        return UserId;
     }
 
-    public void setTown(String town)
+    public void setUserId(int userId)
     {
-        Town = town;
+        UserId = userId;
     }
 
     public String getFirstname()
@@ -52,16 +67,6 @@ public class User
         Lastname = lastname;
     }
 
-    public String getGender()
-    {
-        return Gender;
-    }
-
-    public void setGender(String gender)
-    {
-        Gender = gender;
-    }
-
     public String getNationality()
     {
         return Nationality;
@@ -72,14 +77,34 @@ public class User
         Nationality = nationality;
     }
 
-    public String getDateOfBirth()
+    public int getDateOfBirthYear()
     {
-        return DateOfBirth;
+        return DateOfBirthYear;
     }
 
-    public void setDateOfBirth(String dateOfBirth)
+    public void setDateOfBirthYear(int dateOfBirthYear)
     {
-        DateOfBirth = dateOfBirth;
+        DateOfBirthYear = dateOfBirthYear;
+    }
+
+    public int getDateOfBirthMonth()
+    {
+        return DateOfBirthMonth;
+    }
+
+    public void setDateOfBirthMonth(int dateOfBirthMonth)
+    {
+        DateOfBirthMonth = dateOfBirthMonth;
+    }
+
+    public int getDateOfBirthDay()
+    {
+        return DateOfBirthDay;
+    }
+
+    public void setDateOfBirthDay(int dateOfBirthDay)
+    {
+        DateOfBirthDay = dateOfBirthDay;
     }
 
     public String getPoliticalPreference()
@@ -92,14 +117,14 @@ public class User
         PoliticalPreference = politicalPreference;
     }
 
-    public int getUserId()
+    public String getTown()
     {
-        return UserId;
+        return Town;
     }
 
-    public void setUserId(int userId)
+    public void setTown(String town)
     {
-        UserId = userId;
+        Town = town;
     }
 }
 

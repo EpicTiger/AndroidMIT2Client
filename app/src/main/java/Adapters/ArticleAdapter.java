@@ -19,7 +19,6 @@ import java.util.List;
 
 import Entities.Article;
 import Util.AppSettings;
-import Util.Util;
 
 public class ArticleAdapter extends ArrayAdapter<Article>
 {
@@ -47,6 +46,8 @@ public class ArticleAdapter extends ArrayAdapter<Article>
             v = vi.inflate(R.layout.content_home_screen_list_item, null);
         }
 
+        AppSettings.Articles = objects;
+
         Article article = getItem(position);
 
         if (article != null)
@@ -63,8 +64,10 @@ public class ArticleAdapter extends ArrayAdapter<Article>
                         AppSettings.ArticleArrayPosition = position;
 
                         ((Activity) context)
-                                .getFragmentManager().beginTransaction().replace(R.id.fragmentParentViewGroup, new ContentDetailFragment())
-                                .addToBackStack(String.valueOf(R.string.nav_drawer_fragment_content_detail)).commit();
+                                .getFragmentManager().beginTransaction()
+                                .replace(R.id.fragmentParentViewGroup, new ContentDetailFragment(), String.valueOf(R.string.nav_drawer_fragment_content_detail))
+                                .addToBackStack(String.valueOf(R.string.nav_drawer_fragment_content_detail))
+                                .commit();
                     }
                 });
             }
@@ -77,7 +80,9 @@ public class ArticleAdapter extends ArrayAdapter<Article>
                     @Override
                     public void onClick(View view)
                     {
-                        ((NavigationDrawer)getContext()).executeAddRating(0,1.0);
+                        Article article = objects.get(position);
+
+                        ((NavigationDrawer) getContext()).executeAddRating((int) article.getId(), 1.0);
                     }
                 });
             }
@@ -90,7 +95,9 @@ public class ArticleAdapter extends ArrayAdapter<Article>
                     @Override
                     public void onClick(View view)
                     {
-                        ((NavigationDrawer)getContext()).executeAddRating(0,0.0);
+                        Article article = objects.get(position);
+
+                        ((NavigationDrawer) getContext()).executeAddRating((int) article.getId(), 0.0);
                     }
                 });
             }
@@ -104,8 +111,10 @@ public class ArticleAdapter extends ArrayAdapter<Article>
                     public void onClick(View v)
                     {
                         ((Activity) context)
-                                .getFragmentManager().beginTransaction().replace(R.id.fragmentParentViewGroup, new AddCommentFragment())
-                                .addToBackStack(String.valueOf(R.string.nav_drawer_fragment_add_comment)).commit();
+                                .getFragmentManager().beginTransaction()
+                                .replace(R.id.fragmentParentViewGroup, new AddCommentFragment(), String.valueOf(R.string.nav_drawer_fragment_add_comment))
+                                .addToBackStack(String.valueOf(R.string.nav_drawer_fragment_add_comment))
+                                .commit();
                     }
                 });
             }

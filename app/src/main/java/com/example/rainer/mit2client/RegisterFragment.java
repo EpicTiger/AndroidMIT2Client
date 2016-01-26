@@ -50,6 +50,17 @@ public class RegisterFragment extends BaseFragment
                     String password = (textView_Password.getText().toString().trim());
                     ThriftUserType userType = ThriftUserType.findByValue(spinner_UserType.getSelectedItemPosition());
 
+                    if (email.isEmpty())
+                    {
+                        showSnackbarShort("E-mail can not be empty");
+                        return;
+                    }
+                    if (password.isEmpty())
+                    {
+                        showSnackbarShort("Password can not be empty");
+                        return;
+                    }
+
                     ((LoginActivity) getActivity()).executeRegistration(email, password, userType);
                 } else
                 {

@@ -44,7 +44,7 @@ public class ChangePasswordFragment extends BaseFragment
             {
                 if (AppSettings.UseServers)
                 {
-                    String email = (textView_Email.getText().toString().trim());
+                    String email = (textView_Email.getText().toString().trim().toLowerCase());
                     String oldPassword = (textView_OldPassword.getText().toString().trim());
                     String newPassword = (textView_NewPassword.getText().toString().trim());
                     String confirmPassword = (textView_ConfirmPassword.getText().toString().trim());

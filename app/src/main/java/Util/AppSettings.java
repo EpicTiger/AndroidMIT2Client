@@ -15,6 +15,9 @@ public class AppSettings
     public static int SubscriptionPort = 31223;
     public static int UsermanagementPort = 31224;
 
+    public static String Email;
+    public static String Password;
+
     public static List<Article> Articles;
     public static int ArticleArrayPosition;
 
