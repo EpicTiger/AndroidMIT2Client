@@ -10,6 +10,10 @@ import android.widget.TextView;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
+// <Author> Rainer Schmitt </Author>
+// <StudentNo> 1235656 </StudentNo>
+// <Copyright> Copyright (c) All Right Reserved <Copyright>
+
 public class CreateNewPostFragment extends BaseFragment
 {
     @Bind(R.id.create_new_post_create_post_button)

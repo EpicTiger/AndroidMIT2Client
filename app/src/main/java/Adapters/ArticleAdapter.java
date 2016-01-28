@@ -20,6 +20,10 @@ import java.util.List;
 import Entities.Article;
 import Util.AppSettings;
 
+// <Author> Rainer Schmitt </Author>
+// <StudentNo> 1235656 </StudentNo>
+// <Copyright> Copyright (c) All Right Reserved <Copyright>
+
 public class ArticleAdapter extends ArrayAdapter<Article>
 {
     private final Context context;

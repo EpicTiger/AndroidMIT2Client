@@ -13,6 +13,10 @@ import Politics247Generated.ContentManagementClientService;
 import Politics247Generated.HomeScreenContentResult;
 import Util.AppSettings;
 
+// <Author> Rainer Schmitt </Author>
+// <StudentNo> 1235656 </StudentNo>
+// <Copyright> Copyright (c) All Right Reserved <Copyright>
+
 public class HomeContentThriftClass extends AsyncTask<Integer, Integer, HomeScreenContentResult>
 {
     public NavigationDrawerAsyncResponse delegate = null;

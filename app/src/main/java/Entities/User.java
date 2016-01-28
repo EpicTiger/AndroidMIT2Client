@@ -2,6 +2,10 @@ package Entities;
 
 import Politics247Generated.ThriftGender;
 
+// <Author> Rainer Schmitt </Author>
+// <StudentNo> 1235656 </StudentNo>
+// <Copyright> Copyright (c) All Right Reserved <Copyright>
+
 public class User
 {
     private int UserId;

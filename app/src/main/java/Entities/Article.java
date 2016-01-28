@@ -2,9 +2,12 @@ package Entities;
 
 import android.graphics.drawable.Drawable;
 
+// <Author> Rainer Schmitt </Author>
+// <StudentNo> 1235656 </StudentNo>
+// <Copyright> Copyright (c) All Right Reserved <Copyright>
+
 public class Article
 {
-
     private long Id;
     private String Title;
     private String Text;

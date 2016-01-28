@@ -1,14 +1,13 @@
 package AsyncClasses;
 
-import android.view.View;
-
 import Politics247Generated.LoginResult;
 import Politics247Generated.PasswordChangeResult;
 import Politics247Generated.RegistrationResult;
 
-/**
- * Created by Rainer on 9-1-2016.
- */
+// <Author> Rainer Schmitt </Author>
+// <StudentNo> 1235656 </StudentNo>
+// <Copyright> Copyright (c) All Right Reserved <Copyright>
+
 public interface LoginAsyncResponse
 {
     void loginProcessFinish(LoginResult result);

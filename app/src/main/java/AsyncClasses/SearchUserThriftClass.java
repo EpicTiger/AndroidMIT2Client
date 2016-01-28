@@ -11,6 +11,10 @@ import Politics247Generated.UserManagementClientService;
 import Politics247Generated.UserSearchResult;
 import Util.AppSettings;
 
+// <Author> Rainer Schmitt </Author>
+// <StudentNo> 1235656 </StudentNo>
+// <Copyright> Copyright (c) All Right Reserved <Copyright>
+
 public class SearchUserThriftClass extends AsyncTask<String, Integer, UserSearchResult>
 {
     public NavigationDrawerAsyncResponse delegate = null;

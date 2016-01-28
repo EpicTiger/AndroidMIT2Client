@@ -12,6 +12,10 @@ import Util.AppSettings;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
+// <Author> Rainer Schmitt </Author>
+// <StudentNo> 1235656 </StudentNo>
+// <Copyright> Copyright (c) All Right Reserved <Copyright>
+
 public class LoginFragment extends BaseFragment
 {
     @Bind(R.id.loginscreen_register_button)

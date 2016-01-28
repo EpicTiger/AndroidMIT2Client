@@ -14,6 +14,10 @@ import Util.AppSettings;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
+// <Author> Rainer Schmitt </Author>
+// <StudentNo> 1235656 </StudentNo>
+// <Copyright> Copyright (c) All Right Reserved <Copyright>
+
 public class UsersFragment extends BaseFragment
 {
     @Bind(R.id.homescreen_listview_article)

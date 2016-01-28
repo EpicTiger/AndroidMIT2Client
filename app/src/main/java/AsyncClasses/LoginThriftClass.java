@@ -12,6 +12,10 @@ import Politics247Generated.LoginData;
 import Politics247Generated.LoginResult;
 import Util.AppSettings;
 
+// <Author> Rainer Schmitt </Author>
+// <StudentNo> 1235656 </StudentNo>
+// <Copyright> Copyright (c) All Right Reserved <Copyright>
+
 public class LoginThriftClass extends AsyncTask<LoginData, Integer, LoginResult>
 {
     public LoginAsyncResponse delegate = null;

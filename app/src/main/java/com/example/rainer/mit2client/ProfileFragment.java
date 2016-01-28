@@ -16,6 +16,10 @@ import Util.AppSettings;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
+// <Author> Rainer Schmitt </Author>
+// <StudentNo> 1235656 </StudentNo>
+// <Copyright> Copyright (c) All Right Reserved <Copyright>
+
 public class ProfileFragment extends BaseFragment
 {
     @Bind(R.id.profilescreen_textview_fullname)

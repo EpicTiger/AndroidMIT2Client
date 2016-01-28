@@ -12,6 +12,10 @@ import Politics247Generated.UserProfileUpdateData;
 import Politics247Generated.UserProfileUpdateResult;
 import Util.AppSettings;
 
+// <Author> Rainer Schmitt </Author>
+// <StudentNo> 1235656 </StudentNo>
+// <Copyright> Copyright (c) All Right Reserved <Copyright>
+
 public class UpdateUserProfileThriftClass extends AsyncTask<UserProfileUpdateData, Integer, UserProfileUpdateResult>
 {
     public NavigationDrawerAsyncResponse delegate = null;

@@ -9,6 +9,10 @@ import Politics247Generated.UserProfileResult;
 import Politics247Generated.UserProfileUpdateResult;
 import Politics247Generated.UserSearchResult;
 
+// <Author> Rainer Schmitt </Author>
+// <StudentNo> 1235656 </StudentNo>
+// <Copyright> Copyright (c) All Right Reserved <Copyright>
+
 public interface NavigationDrawerAsyncResponse
 {
     void commentProcessFinish(CommentResult result);

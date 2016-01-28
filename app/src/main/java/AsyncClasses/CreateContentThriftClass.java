@@ -12,6 +12,10 @@ import Politics247Generated.CreateContentData;
 import Politics247Generated.CreateContentResult;
 import Util.AppSettings;
 
+// <Author> Rainer Schmitt </Author>
+// <StudentNo> 1235656 </StudentNo>
+// <Copyright> Copyright (c) All Right Reserved <Copyright>
+
 public class CreateContentThriftClass extends AsyncTask<CreateContentData, Integer, CreateContentResult>
 {
     public NavigationDrawerAsyncResponse delegate = null;

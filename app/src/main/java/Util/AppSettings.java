@@ -5,6 +5,10 @@ import java.util.List;
 import Entities.Article;
 import Entities.User;
 
+// <Author> Rainer Schmitt </Author>
+// <StudentNo> 1235656 </StudentNo>
+// <Copyright> Copyright (c) All Right Reserved <Copyright>
+
 public class AppSettings
 {
     public static boolean UseServers = true;

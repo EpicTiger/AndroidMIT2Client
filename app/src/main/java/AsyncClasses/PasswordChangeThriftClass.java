@@ -12,6 +12,10 @@ import Politics247Generated.PasswordChangeData;
 import Politics247Generated.PasswordChangeResult;
 import Util.AppSettings;
 
+// <Author> Rainer Schmitt </Author>
+// <StudentNo> 1235656 </StudentNo>
+// <Copyright> Copyright (c) All Right Reserved <Copyright>
+
 public class PasswordChangeThriftClass extends AsyncTask<PasswordChangeData, Integer, PasswordChangeResult>
 {
     public LoginAsyncResponse delegate = null;

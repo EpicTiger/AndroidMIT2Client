@@ -12,6 +12,10 @@ import Politics247Generated.CommentResult;
 import Politics247Generated.ContentManagementClientService;
 import Util.AppSettings;
 
+// <Author> Rainer Schmitt </Author>
+// <StudentNo> 1235656 </StudentNo>
+// <Copyright> Copyright (c) All Right Reserved <Copyright>
+
 public class CommentThriftClass extends AsyncTask<CommentData, Integer, CommentResult>
 {
     public NavigationDrawerAsyncResponse delegate = null;

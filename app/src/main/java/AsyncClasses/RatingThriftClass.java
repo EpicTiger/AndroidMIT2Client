@@ -12,6 +12,10 @@ import Politics247Generated.RateData;
 import Politics247Generated.RateResult;
 import Util.AppSettings;
 
+// <Author> Rainer Schmitt </Author>
+// <StudentNo> 1235656 </StudentNo>
+// <Copyright> Copyright (c) All Right Reserved <Copyright>
+
 public class RatingThriftClass extends AsyncTask<RateData, Integer, RateResult>
 {
     public NavigationDrawerAsyncResponse delegate = null;

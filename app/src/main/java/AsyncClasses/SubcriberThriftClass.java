@@ -12,6 +12,10 @@ import Politics247Generated.SubscriptionResult;
 import Politics247Generated.SubscriptionUserClientService;
 import Util.AppSettings;
 
+// <Author> Rainer Schmitt </Author>
+// <StudentNo> 1235656 </StudentNo>
+// <Copyright> Copyright (c) All Right Reserved <Copyright>
+
 public class SubcriberThriftClass extends AsyncTask<SubscriptionData, Integer, SubscriptionResult>
 {
     public NavigationDrawerAsyncResponse delegate = null;

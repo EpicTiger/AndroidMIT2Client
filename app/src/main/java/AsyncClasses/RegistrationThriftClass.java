@@ -12,6 +12,10 @@ import Politics247Generated.RegistrationData;
 import Politics247Generated.RegistrationResult;
 import Util.AppSettings;
 
+// <Author> Rainer Schmitt </Author>
+// <StudentNo> 1235656 </StudentNo>
+// <Copyright> Copyright (c) All Right Reserved <Copyright>
+
 public class RegistrationThriftClass extends AsyncTask<RegistrationData, Integer, RegistrationResult>
 {
     public LoginAsyncResponse delegate = null;
